@@ -8,11 +8,11 @@ export default {
     },
     data() {
         return {
+            url:'http://127.0.0.1:8000/api/accountType',
             accountType: []
         }
     },
     mounted() {
-        // console.log('hello this is anam')
         this.getAccountType();
     },
     methods: {
@@ -22,7 +22,18 @@ export default {
                     this.accountType = (res.data.data)
                 })
 
+        },
+        accountTypeDelete(id) {
+            axios.delete(`${this.url}/${id}`);
+            this.getAccountType()
+        },
+        edit(id){
+            axios.get(`${this.url}/${id}`)
+            .then(res=>{
+                
+            })
         }
+        
 
     }
 }
@@ -70,8 +81,8 @@ export default {
                             <th>{{ i + 1 }}</th>
                             <td>{{ d.account_type }}</td>
                             <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
+                                <button class="btn btn-danger btn-sm" @click="accountTypeDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>

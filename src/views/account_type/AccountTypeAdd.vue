@@ -8,21 +8,25 @@ export default {
     },
     data() {
         return {
-            accountTypeAdd: {
-                name:''
-            }
+            name: ''
         }
     },
     mounted() {
         // console.log('savaAccountType')
-        this.savaAccountType();
+        // this.savaAccountType();
     },
     methods: {
         savaAccountType() {
-            axios.post('http://127.0.0.1:8000/api/accountType')
+            // console.log(this.name)
+            const AccountTypeData={
+                account_type:this.name
+            }
+            // console.log(AccountTypeData)
+            axios.post('http://127.0.0.1:8000/api/accountType', AccountTypeData)
                 .then(res => {
                     this.accountType = (res.data.data)
                     console.log(res.data.data)
+                    this.$router.push("/dashboard/accountType")
                 })
 
         }
@@ -43,14 +47,14 @@ export default {
                             <h4 class=" table_heading">Account Type Add</h4>
                         </div>
                         <div class="card-body">
-                            
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Account Type</label>
-                                    <input type="text" v-model="accountTypeAdd.name" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter Account Type">
-                                </div>
-                                <button type="submit" @click="savaAccountType" class="btn btn-primary">Submit</button>
-                           
+
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Account Type</label>
+                                <input type="text" v-model="name" class="form-control"
+                                    id="exampleInputEmail1" placeholder="Enter Account Type">
+                            </div>
+                            <button type="submit" @click="savaAccountType" class="btn btn-primary">Submit</button>
+
                         </div>
                     </div>
                 </div>
