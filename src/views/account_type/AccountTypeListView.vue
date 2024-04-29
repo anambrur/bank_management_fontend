@@ -1,41 +1,58 @@
-<script setup>
+<script>
 import NavbarViewVue from "../inc/NavbarView.vue";
+import axios from 'axios'
+
+export default {
+    components: {
+        NavbarViewVue
+    },
+    data() {
+        return {
+            accountType: []
+        }
+    },
+    mounted() {
+        // console.log('hello this is anam')
+        this.getAccountType();
+    },
+    methods: {
+        getAccountType() {
+            axios.get('http://127.0.0.1:8000/api/accountType')
+                .then(res => {
+                    this.accountType = (res.data.data)
+                })
+
+        }
+
+    }
+}
 
 </script>
 
 <template>
     <main>
-
         <NavbarViewVue />
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
-                <!-- <div class="serach_field-area">
-                    <div class="search_inner">
-                        <form action="#">
-                            <div class="search_field ">
-                                <input type="text" placeholder="Search here..." />
-                            </div>
-                            <button type="submit">
-                                <img src="/img/icon/icon_search.svg" alt="image" />
-                            </button>
-                        </form>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group rounded">
+                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <span class="input-group-text border-0" id="search-addon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
                     </div>
-                </div> -->
-
-                <div class="input-group rounded">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                        aria-describedby="search-addon" />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <i class="fas fa-search"></i>
-                    </span>
                 </div>
+
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="m-3 table_heading">Account Type List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
                         <button class="btn btn-warning">Add New</button>
-                        
+
                     </div>
 
                 </div>
@@ -43,15 +60,15 @@ import NavbarViewVue from "../inc/NavbarView.vue";
                 <table class="table table-striped ">
                     <thead class="table_color">
                         <tr>
-                            <th scope="col">SL</th>
-                            <th scope="col">A/C Type</th>
-                            <th scope="col">Action</th>
+                            <th>SL</th>
+                            <th>A/C Type</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
+                        <tr v-for="(d, i) in accountType" :key="i">
+                            <th>{{ i + 1 }}</th>
+                            <td>{{ d.account_type }}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2">Edit</button>
                                 <button class="btn btn-danger btn-sm">Delete</button>
