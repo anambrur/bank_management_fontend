@@ -45,6 +45,28 @@ export default {
             </li>
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Withdrawal</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/withdrawal">Withdrawal List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Cash Deposit</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/cashDeposit">Cash Deposit List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/3.svg" alt="image" />
                     <span>Applications</span>
                 </a>
