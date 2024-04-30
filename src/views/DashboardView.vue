@@ -1,11 +1,11 @@
 <script setup>
-import NavbarViewVue from './inc/NavbarView.vue'
+import NavbarView from './inc/NavbarView.vue'
 </script>
 
 
 <template>
     <main>
-        <NavbarViewVue/>
+        <NavbarView/>
 
         <section class="main_content dashboard_part">
             <div class="container-fluid g-0">

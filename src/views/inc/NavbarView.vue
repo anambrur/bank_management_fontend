@@ -46,6 +46,17 @@ export default {
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Customer</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/customerList">Customer List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
                     <span>Withdrawal</span>
                 </a>
                 <ul>
