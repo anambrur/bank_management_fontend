@@ -3,18 +3,36 @@ import DashboardView from '@/views/DashboardView.vue'
 import AccountTypeListView from '@/views/account_type/AccountTypeListView.vue'
 import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
 import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
+<<<<<<< HEAD
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
 import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
 import InterestAdd from '@/views/interest/InterestAdd.vue'
 import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
+=======
+import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
+import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
+import LogInView from '@/views/LogInView.vue'
+import SignUpView from '@/views/SignUpView.vue'
+import CustomerView from '@/views/Customer/CustomerView.vue'
+>>>>>>> 6667ce8a5644a7f3a10b261f14f6ec0fad3a24b9
 
 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'login',
+      component: LogInView
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUpView
+    },
     {
       path: '/dashboard',
       name: 'dashboard',
@@ -41,6 +59,7 @@ const router = createRouter({
       component: CashDepositListView
     },
     {
+<<<<<<< HEAD
       path: '/dashboard/cashDepositAdd',
       name: 'cashDepositAdd',
       component: CashDepositAdd
@@ -64,6 +83,23 @@ const router = createRouter({
       path: '/dashboard/interestAdd',
       name: 'interestAdd',
       component: InterestAdd
+=======
+      path: '/dashboard/accountTypeAdd',
+      name: 'accountTypeAdd',
+      component: AccountTypeAdd
+    },
+    {
+      path: '/dashboard/editAccountType/:id',
+      name: 'editAccountType',
+      component: AccountTypeEdit,
+      props: true // Pass route params as props to the component
+    },
+    {
+      path: '/dashboard/customerList/',
+      name: 'customerList',
+      component: CustomerView,
+      
+>>>>>>> 6667ce8a5644a7f3a10b261f14f6ec0fad3a24b9
     },
   ]
 })

@@ -1,34 +1,3 @@
-<script>
-import NavbarViewVue from "../inc/NavbarView.vue";
-import axios from 'axios'
-
-export default {
-    components: {
-        NavbarViewVue
-    },
-    data() {
-        return {
-            accountType: []
-        }
-    },
-    mounted() {
-        // console.log('hello this is anam')
-        this.getAccountType();
-    },
-    methods: {
-        getAccountType() {
-            axios.get('http://127.0.0.1:8000/api/accountType')
-                .then(res => {
-                    this.accountType = (res.data.data)
-                })
-
-        }
-
-    }
-}
-
-</script>
-
 <template>
     <main>
         <NavbarViewVue />
@@ -70,8 +39,8 @@ export default {
                             <th>{{ i + 1 }}</th>
                             <td>{{ d.account_type }}</td>
                             <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
+                                <button class="btn btn-danger btn-sm" @click="accountTypeDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -81,3 +50,52 @@ export default {
     </main>
 
 </template>
+
+
+
+<script>
+import NavbarViewVue from "../inc/NavbarView.vue";
+import axios from 'axios'
+
+export default {
+    components: {
+        NavbarViewVue
+    },
+    data() {
+        return {
+            url: 'http://127.0.0.1:8000/api/accountType',
+            accountType: []
+        }
+    },
+    mounted() {
+        this.getAccountType();
+    },
+    methods: {
+        getAccountType() {
+            axios.get('http://127.0.0.1:8000/api/accountType')
+                .then(res => {
+                    this.accountType = (res.data.data)
+                })
+
+        },
+       
+        accountTypeDelete(id) {
+            axios.delete(`${this.url}/${id}`)
+                .then(() => {
+                    this.getAccountType();
+                    this.$router.push('/dashboard/accountType');
+                })
+                .catch(error => {
+                    console.error('Error deleting account type:', error);
+                });
+        },
+        edit(id) {
+            this.$router.push({ name: 'editAccountType', params: { id: id } });
+        },
+
+
+    },
+    
+}
+
+</script>
