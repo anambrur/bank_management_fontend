@@ -1,14 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DashboardView from '@/views/DashboardView.vue'
 import AccountTypeListView from '@/views/account_type/AccountTypeListView.vue'
-<<<<<<< HEAD
 import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
 import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
+import PaymentListView from '@/views/payment/PaymentListView.vue'
+import InterestListView from '@/views/interest/InterestListView.vue'
+import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
+import InterestAdd from '@/views/interest/InterestAdd.vue'
+import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
+import PaymentAdd from '@/views/payment/PaymentAdd.vue'
 
 
-=======
-import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
->>>>>>> 7df5cc7327c098431748814d23a6923b04672a43
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,20 +26,44 @@ const router = createRouter({
       component: AccountTypeListView
     },
     {
-<<<<<<< HEAD
       path: '/dashboard/withdrawal',
       name: 'withdrawal',
       component: WithdrawalListView
     },
     {
+      path: '/dashboard/withdrawalAdd',
+      name: 'withdrawalAdd',
+      component: WithdrawalAdd
+    },
+    {
       path: '/dashboard/cashDeposit',
       name: 'cashDeposit',
       component: CashDepositListView
-=======
-      path: '/dashboard/accountTypeAdd',
-      name: 'accountTypeAdd',
-      component: AccountTypeAdd
->>>>>>> 7df5cc7327c098431748814d23a6923b04672a43
+    },
+    {
+      path: '/dashboard/cashDepositAdd',
+      name: 'cashDepositAdd',
+      component: CashDepositAdd
+    },
+    {
+      path: '/dashboard/payment',
+      name: 'payment',
+      component: PaymentListView
+    },
+    {
+      path: '/dashboard/paymentAdd',
+      name: 'paymentAdd',
+      component: PaymentAdd
+    },
+    {
+      path: '/dashboard/interest',
+      name: 'interest',
+      component: InterestListView
+    },
+    {
+      path: '/dashboard/interestAdd',
+      name: 'interestAdd',
+      component: InterestAdd
     },
   ]
 })

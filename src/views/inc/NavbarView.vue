@@ -67,6 +67,28 @@ export default {
             </li>
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Payment</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/payment">Payment List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Interest</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/interest">Interest List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/3.svg" alt="image" />
                     <span>Applications</span>
                 </a>
