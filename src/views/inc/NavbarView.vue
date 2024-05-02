@@ -47,8 +47,6 @@ export default {
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
 
-                    <span>Loan Section</span>
-
                     <span>Customer</span>
                 </a>
                 <ul>
@@ -56,6 +54,34 @@ export default {
                         <RouterLink to="/dashboard/customerList">Customer List</RouterLink>
                     </li>
                 </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+
+                    <span>Loan Section</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/loanType">Loan Type List</RouterLink>
+                        <RouterLink to="/dashboard/loan">Loan List</RouterLink>
+                        <RouterLink to="/dashboard/loanProposal">Loan Proposal List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+
+                    <span>Deposit Section</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/depositType">Deposit Type List</RouterLink>
+                        <RouterLink to="/dashboard/deposit">Deposit List</RouterLink>
+                    </li>
+                </ul>
+
             </li>
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -121,21 +147,7 @@ export default {
                     <span>UI Component</span>
 
                 </a>
-                <ul>
-                    <li>
-                        <RouterLink to="/dashboard/loanType">Loan Type List</RouterLink>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <RouterLink to="/dashboard/loan">Loan List</RouterLink>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <RouterLink to="/dashboard/loanProposal">Loan Proposal List</RouterLink>
-                    </li>
-                </ul>
+
             </li>
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
