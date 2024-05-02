@@ -105,6 +105,9 @@ const router = createRouter({
       name: 'depositAdd',
       component: DepositAdd
 
+    },
+    {
+
       path: '/dashboard/withdrawal',
       name: 'withdrawal',
       component: WithdrawalListView
