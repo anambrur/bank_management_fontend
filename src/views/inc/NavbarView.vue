@@ -45,89 +45,39 @@ export default {
             </li>
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/3.svg" alt="image" />
-                    <span>Applications</span>
-                </a>
-                <ul>
-                    <li><a href="mail_box.html">Mail Box</a></li>
-                    <li><a href="chat.html">Chat</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </li>
-            <li class="side_menu_title">
-                <span>Components</span>
-            </li>
-            <li class>
-                <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/4.svg" alt="image" />
-                    <span>UI Component</span>
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Loan Section</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="#">Elements</a>
-                        <ul>
-                            <li><a href="buttons.html">Buttons</a></li>
-                            <li><a href="dropdown.html">Dropdowns</a></li>
-                            <li><a href="Badges.html">Badges</a></li>
-                            <li>
-                                <a href="Loading_Indicators.html">Loading Indicators</a>
-                            </li>
-                        </ul>
+                        <RouterLink to="/dashboard/loanType">Loan Type List</RouterLink>
                     </li>
+                </ul>
+                <ul>
                     <li>
-                        <a href="#">Components</a>
-                        <ul>
-                            <li><a href="notification.html">Notifications</a></li>
-                            <li><a href="progress.html">Progress Bar</a></li>
-                            <li><a href="carousel.html">Carousel</a></li>
-                            <li><a href="cards.html">cards</a></li>
-                            <li><a href="Pagination.html">Pagination</a></li>
-                        </ul>
+                        <RouterLink to="/dashboard/loan">Loan List</RouterLink>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/loanProposal">Loan Proposal List</RouterLink>
                     </li>
                 </ul>
             </li>
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/5.svg" alt="image" />
-                    <span>Widgets</span>
-                </a>
-                <ul>
-                    <li><a href="chart_box_1.html">Chart Boxes 1</a></li>
-                    <li><a href="profilebox.html">Profile Box</a></li>
-                </ul>
-            </li>
-            <li class>
-                <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/6.svg" alt="image" />
-                    <span>Forms</span>
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Deposit Section</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="#">Elements</a>
-                        <ul>
-                            <li><a href="data_table.html">Data Tables</a></li>
-                            <li><a href="bootstrap_table.html">Grid Tables</a></li>
-                            <li><a href="datepicker.html">Date Picker</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">Widgets</a>
-                        <ul>
-                            <li><a href="Input_Selects.html">Input Selects</a></li>
-                            <li><a href="Input_Mask.html">Input Mask</a></li>
-                        </ul>
+                        <RouterLink to="/dashboard/depositType">Deposit Type List</RouterLink>
                     </li>
                 </ul>
-            </li>
-            <li class>
-                <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/7.svg" alt="image" />
-                    <span>Charts</span>
-                </a>
                 <ul>
-                    <li><a href="chartjs.html">ChartJS</a></li>
-                    <li><a href="apex_chart.html">Apex Charts</a></li>
-                    <li><a href="chart_sparkline.html">Chart sparkline</a></li>
+                    <li>
+                        <RouterLink to="/dashboard/deposit">Deposit List</RouterLink>
+                    </li>
                 </ul>
             </li>
         </ul>
