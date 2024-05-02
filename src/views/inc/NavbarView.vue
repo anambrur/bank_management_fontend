@@ -46,7 +46,80 @@ export default {
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
+
                     <span>Loan Section</span>
+
+                    <span>Customer</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/customerList">Customer List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Withdrawal</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/withdrawal">Withdrawal List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Cash Deposit</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/cashDeposit">Cash Deposit List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Payment</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/payment">Payment List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Interest</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/interest">Interest List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/3.svg" alt="image" />
+                    <span>Applications</span>
+                </a>
+                <ul>
+                    <li><a href="mail_box.html">Mail Box</a></li>
+                    <li><a href="chat.html">Chat</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </li>
+            <li class="side_menu_title">
+                <span>Components</span>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/4.svg" alt="image" />
+                    <span>UI Component</span>
+
                 </a>
                 <ul>
                     <li>
