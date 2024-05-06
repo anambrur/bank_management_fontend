@@ -74,7 +74,7 @@ export default {
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Customer Name</label>
                                         <select class="form-select col-md-10" v-model="selectCustomer">
-                                            <option disabled value="">{{ loanPorosal.customer }}</option>
+                                            <option disabled value="">Customer Name</option>
                                             <option v-for="(d, i) in customers" :key="i" :value="d.id">{{ d.customer}}</option>
                                         </select>
                                         <p style="color:red" v-if="loanPorosalError">{{ loanPorosalError }}</p>
