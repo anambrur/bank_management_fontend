@@ -36,8 +36,8 @@ export default{
                         <h4 class="m-3 table_heading">Withdrawal List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
+                        <button class="btn btn-warning">Add New</button>
                         <RouterLink to="/dashboard/withdrawalAdd" class="btn btn-warning">Add New</RouterLink>
-
                     </div>
 
                 </div>

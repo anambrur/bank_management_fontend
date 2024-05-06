@@ -10,7 +10,10 @@ export default {
 <template>
     <nav class="sidebar">
         <div class="logo d-flex justify-content-between">
-            <a href="index.html"><img src="/img/logo.png" alt="image" /></a>
+            <!-- <a href="index.html"><img src="/img/logo.png" alt="image" /></a> -->
+            <a href="">
+                <h3><span>ABSRM</span></h3>
+            </a>
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
             </div>
@@ -105,6 +108,38 @@ export default {
                     </li>
                 </ul>
             </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Expenses</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/expensecategory">Expense Category List</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/dashboard/expense">Expense List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Employee</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/employeeType">Employee Type List</RouterLink>
+                    </li>
+                    <li>
+                        <RouterLink to="/dashboard/employee">Employee List</RouterLink>
+                    </li>
+
+                </ul>
+            </li>
+
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
@@ -139,17 +174,7 @@ export default {
                     </li>
                 </ul>
             </li>
-            <li class>
-                <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/3.svg" alt="image" />
-                    <span>Applications</span>
-                </a>
-                <ul>
-                    <li><a href="mail_box.html">Mail Box</a></li>
-                    <li><a href="chat.html">Chat</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </li>
+
             <li class="side_menu_title">
                 <span>Components</span>
             </li>

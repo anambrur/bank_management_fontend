@@ -1,30 +1,45 @@
 <script>
 import NavbarViewVue from "../inc/NavbarView.vue";
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
     components: {
         NavbarViewVue
     },
-    // data() {
-    //     return {
-    //         accountType: []
-    //     }
-    // },
-    // mounted() {
-    //     console.log('hello this is anam')
-    //     this.getAccountType();
-    // },
-    // methods: {
-    //     getAccountType() {
-    //         axios.get('http://127.0.0.1:8000/api/accountType')
-    //             .then(res => {
-    //                 this.accountType = (res.data.data)
-    //             })
+    data() {
+        return {
+            url: 'http://127.0.0.1:8000/api/loanType',
+            loanType: []
+        }
+    },
+    mounted() {
+        this.getLoanType();
+    },
+    methods: {
+        getLoanType() {
+            axios.get('http://127.0.0.1:8000/api/loanType')
+                .then(res => {
+                    this.loanType = (res.data.data)
+                })
 
-    //     }
+        },
+       
+        loanTypeDelete(id) {
+            axios.delete(`${this.url}/${id}`)
+                .then(() => {
+                    this.getLoanType();
+                    this.$router.push('/dashboard/loanType');
+                })
+                .catch(error => {
+                    console.error('Error deleting loan type:', error);
+                });
+        },
+        edit(id) {
+            this.$router.push({ name: 'editLoanType', params: { id: id } });
+        },
 
-    // }
+
+    },
 }
 
 </script>
@@ -67,12 +82,12 @@ export default {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
+                        <tr v-for="(d,i) in loanType" :key="i">
+                            <th>{{ i + 1 }}</th>
+                            <td>{{d.loan_type}}</td>
                             <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
+                                <button class="btn btn-danger btn-sm" @click="loanTypeDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
