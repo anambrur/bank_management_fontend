@@ -18,7 +18,6 @@ import EmployeeTypeEditView from '@/views/employeeType/EmployeeTypeEditView.vue'
 import EmployeeListView from '@/views/employees/EmployeeListView.vue'
 import EmployeeAdd from '@/views/employees/EmployeeAdd.vue'
 
-
 import LoanTypeListView from '@/views/loan_type/LoanTypeListView.vue'
 import LoanListView from '@/views/loan/LoanListView.vue'
 import LoanProposalListView from '@/views/loan_proposal/LoanProposalListView.vue'
@@ -30,24 +29,16 @@ import LoanProposalAddView from '@/views/loan_proposal/LoanProposalAddView.vue'
 import DepositTypeAdd from '@/views/deposit_type/DepositTypeAdd.vue'
 import DepositAdd from '@/views/deposit/DepositAdd.vue'
 
-import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
-import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
-
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
 import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
 import InterestAdd from '@/views/interest/InterestAdd.vue'
 import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
-import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
-import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
 import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
-
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -73,7 +64,6 @@ const router = createRouter({
       component: AccountTypeListView
     },
     {
-
       path: '/dashboard/loanType',
       name: 'loanType',
       component: LoanTypeListView
@@ -97,7 +87,7 @@ const router = createRouter({
     {
       path: '/dashboard/loanAdd',
       name: 'loanAdd',
-      component:LoanAddView
+      component: LoanAddView
     },
     {
       path: '/dashboard/loanProposal',
@@ -128,7 +118,6 @@ const router = createRouter({
       path: '/dashboard/depositAdd',
       name: 'depositAdd',
       component: DepositAdd
-
     },
     {
       path: '/dashboard/withdrawal',
@@ -169,7 +158,8 @@ const router = createRouter({
       path: '/dashboard/interestAdd',
       name: 'interestAdd',
       component: InterestAdd
-    },{
+    },
+    {
       path: '/dashboard/accountTypeAdd',
       name: 'accountTypeAdd',
       component: AccountTypeAdd
@@ -189,7 +179,7 @@ const router = createRouter({
     {
       path: '/dashboard/expensecategory',
       name: 'expensecategory',
-      component: ExpenseCategoryList 
+      component: ExpenseCategoryList
     },
 
     {
@@ -198,7 +188,6 @@ const router = createRouter({
       component: ExpenseCategoryEditView,
       props: true
     },
-
 
     {
       path: '/dashboard/expense',
@@ -233,7 +222,6 @@ const router = createRouter({
       component: EmployeeTypeEditView
     },
 
-
     {
       path: '/dashboard/employee',
       name: 'employee',
@@ -247,8 +235,8 @@ const router = createRouter({
     {
       path: '/dashboard/customerList/',
       name: 'customerList',
-      component: CustomerView,
-    },
+      component: CustomerView
+    }
   ]
 })
 
