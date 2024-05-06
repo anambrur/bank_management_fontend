@@ -119,6 +119,18 @@ export default {
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Card Type</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/cardType">Card Type List</RouterLink>
+                        <RouterLink to="/dashboard/cardDetails">Card Details List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
                     <span>Interest</span>
                 </a>
                 <ul>
