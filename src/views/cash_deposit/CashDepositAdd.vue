@@ -1,8 +1,9 @@
+
 <script>
 import NavbarView from '../inc/NavbarView.vue';
 
 export default {
-    components:{
+    components: {
         NavbarView
     }
 }
@@ -10,7 +11,7 @@ export default {
 
 <template>
     <main>
-        <NavbarView/>
+        <NavbarView />
         <section class="main_content dashboard_part">
             <div class="container card mt-5 ms-2">
                 <div class="row justify-content-center">

@@ -1,6 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DashboardView from '@/views/DashboardView.vue'
 import AccountTypeListView from '@/views/account_type/AccountTypeListView.vue'
+import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
+import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
+import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
+import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
+import ExpenseCategoryAddView from '@/views/expensecategory/ExpenseCategoryAddView.vue'
+import ExpenseCategoryList from '@/views/expensecategory/ExpenseCategoryList.vue'
+import ExpenseCategoryEditView from '@/views/expensecategory/ExpenseCategoryEditView.vue'
+import ExpenseListView from '@/views/expenses/ExpenseListView.vue'
+import ExpenseAddView from '@/views/expenses/ExpenseAddView.vue'
+import ExpenseEditView from '@/views/expenses/ExpenseEditView.vue'
+import EmployeeTypeListView from '@/views/employeeType/EmployeeTypeListView.vue'
+
+import EmployeeTypeAdd from '@/views/employeeType/EmployeeTypeAdd.vue'
+import EmployeeTypeEditView from '@/views/employeeType/EmployeeTypeEditView.vue'
+import EmployeeListView from '@/views/employees/EmployeeListView.vue'
+import EmployeeAdd from '@/views/employees/EmployeeAdd.vue'
 
 import LoanTypeListView from '@/views/loan_type/LoanTypeListView.vue'
 import LoanListView from '@/views/loan/LoanListView.vue'
@@ -12,6 +28,7 @@ import LoanAddView from '@/views/loan/LoanAddView.vue'
 import LoanProposalAddView from '@/views/loan_proposal/LoanProposalAddView.vue'
 import DepositTypeAdd from '@/views/deposit_type/DepositTypeAdd.vue'
 import DepositAdd from '@/views/deposit/DepositAdd.vue'
+ HEAD
 import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
 import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
 
@@ -21,15 +38,10 @@ import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
 import InterestAdd from '@/views/interest/InterestAdd.vue'
 import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
-import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
-import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
 import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
-
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,7 +67,6 @@ const router = createRouter({
       component: AccountTypeListView
     },
     {
-
       path: '/dashboard/loanType',
       name: 'loanType',
       component: LoanTypeListView
@@ -79,7 +90,7 @@ const router = createRouter({
     {
       path: '/dashboard/loanAdd',
       name: 'loanAdd',
-      component:LoanAddView
+      component: LoanAddView
     },
     {
       path: '/dashboard/loanProposal',
@@ -110,10 +121,8 @@ const router = createRouter({
       path: '/dashboard/depositAdd',
       name: 'depositAdd',
       component: DepositAdd
-
     },
     {
-
       path: '/dashboard/withdrawal',
       name: 'withdrawal',
       component: WithdrawalListView
@@ -152,25 +161,85 @@ const router = createRouter({
       path: '/dashboard/interestAdd',
       name: 'interestAdd',
       component: InterestAdd
-    },{
+    },
+    {
       path: '/dashboard/accountTypeAdd',
       name: 'accountTypeAdd',
       component: AccountTypeAdd
     },
-      
     {
       path: '/dashboard/editAccountType/:id',
       name: 'editAccountType',
       component: AccountTypeEdit,
       props: true // Pass route params as props to the component
     },
+
+    {
+      path: '/dashboard/expesecategoryadd',
+      name: 'expesecategoryadd',
+      component: ExpenseCategoryAddView
+    },
+    {
+      path: '/dashboard/expensecategory',
+      name: 'expensecategory',
+      component: ExpenseCategoryList
+    },
+
+    {
+      path: '/dashboard/expensecategoryedit/:id',
+      name: 'expensecategoryedit',
+      component: ExpenseCategoryEditView,
+      props: true
+    },
+
+    {
+      path: '/dashboard/expense',
+      name: 'expense',
+      component: ExpenseListView
+    },
+    {
+      path: '/dashboard/expenseadd',
+      name: 'expenseadd',
+      component: ExpenseAddView
+    },
+    {
+      path: '/dashboard/expenseedit/:id',
+      name: 'expenseedit',
+      component: ExpenseEditView,
+      props: true
+    },
+
+    {
+      path: '/dashboard/employeeType',
+      name: 'employeeType',
+      component: EmployeeTypeListView
+    },
+    {
+      path: '/dashboard/employeeTypeadd',
+      name: 'employeeTypeadd',
+      component: EmployeeTypeAdd
+    },
+    {
+      path: '/dashboard//dashboard/employeeTypeEdit/:id',
+      name: 'employeeTypeEdit',
+      component: EmployeeTypeEditView
+    },
+
+    {
+      path: '/dashboard/employee',
+      name: 'employee',
+      component: EmployeeListView
+    },
+    {
+      path: '/dashboard/employeeadd',
+      name: 'employeeadd',
+      component: EmployeeAdd
+    },
     {
       path: '/dashboard/customerList/',
       name: 'customerList',
-      component: CustomerView,
-      
-
-    },
+      component: CustomerView
+    }
   ]
 })
 

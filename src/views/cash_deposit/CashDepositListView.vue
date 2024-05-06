@@ -1,12 +1,12 @@
 <script>
 import NavbarView from '../inc/NavbarView.vue';
-export default{
+export default {
     components: {
         NavbarView
     },
-    data(){
+    data() {
         return {
-            
+
         }
     }
 
@@ -15,7 +15,7 @@ export default{
 
 <template>
     <main>
-       <NavbarView/>
+        <NavbarView />
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
                 <div class="row">
@@ -35,7 +35,11 @@ export default{
                         <h4 class="m-3 table_heading">Cash Deposit List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
+
+                        <button class="btn btn-warning">Add New</button>
+
                         <RouterLink to="/dashboard/cashDepositAdd" class="btn btn-warning">Add New</RouterLink>
+
 
                     </div>
 
