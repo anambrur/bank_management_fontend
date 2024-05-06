@@ -28,6 +28,9 @@ import LoanAddView from '@/views/loan/LoanAddView.vue'
 import LoanProposalAddView from '@/views/loan_proposal/LoanProposalAddView.vue'
 import DepositTypeAdd from '@/views/deposit_type/DepositTypeAdd.vue'
 import DepositAdd from '@/views/deposit/DepositAdd.vue'
+ HEAD
+import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
+import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
 
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
@@ -39,6 +42,13 @@ import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
 import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
+import CardTypeListView from '@/views/card_type/CardTypeListView.vue'
+import CardTypeAdd from '@/views/card_type/CardTypeAdd.vue'
+import CardTypeEdit from '@/views/card_type/CardTypeEdit.vue'
+import CardDetailsListView from '@/views/card/CardDetailsListView.vue'
+import CardDetailsEdit from '@/views/card/CardDetailsEdit.vue'
+import CardDetailsAdd from '@/views/card/CardDetailsAdd.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -236,7 +246,39 @@ const router = createRouter({
       path: '/dashboard/customerList/',
       name: 'customerList',
       component: CustomerView
-    }
+    },
+    {
+      path: '/dashboard/cardType/',
+      name: 'cardType',
+      component: CardTypeListView
+    },
+    {
+      path: '/dashboard/cardAdd',
+      name: 'cardAdd',
+      component: CardTypeAdd
+    },
+    {
+      path: '/dashboard/editCardType/:id',
+      name: 'editCardType',
+      component: CardTypeEdit,
+      props: true // Pass route params as props to the component
+    },
+    {
+      path: '/dashboard/cardDetails/',
+      name: 'cardDetails',
+      component: CardDetailsListView
+    },
+    {
+      path: '/dashboard/cardDetailsAdd',
+      name: 'cardDetailsAdd',
+      component: CardDetailsAdd
+    },
+    {
+      path: '/dashboard/editCardDetails/:id',
+      name: 'editCardDetails',
+      component: CardDetailsEdit,
+      props: true // Pass route params as props to the component
+    },
   ]
 })
 

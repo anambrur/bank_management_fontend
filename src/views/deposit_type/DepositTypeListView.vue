@@ -70,6 +70,8 @@ export default {
                         <tr v-for="(d,i) in depositType" :key="i">
                             <th>{{ i + 1}}</th>
                             <td>{{d.deposite_type}}</td>
+                            <th>{{i + 1}}</th>
+                            <td>{{d.deposit_type}}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2">Edit</button>
                                 <button class="btn btn-danger btn-sm">Delete</button>
