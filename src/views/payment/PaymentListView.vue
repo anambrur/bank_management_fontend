@@ -1,21 +1,21 @@
 <script>
 import NavbarView from '../inc/NavbarView.vue';
 export default {
-    components: {
+    components:{
         NavbarView
     },
     data() {
-        return {
+        return{
 
         }
     }
-
 }
+
 </script>
 
 <template>
     <main>
-        <NavbarView />
+        <NavbarView/>
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
                 <div class="row">
@@ -32,17 +32,11 @@ export default {
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Cash Deposit List</h4>
+                        <h4 class="m-3 table_heading">Payment List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
-
-                        <button class="btn btn-warning">Add New</button>
-
-                        <RouterLink to="/dashboard/cashDepositAdd" class="btn btn-warning">Add New</RouterLink>
-
-
+                        <RouterLink to="/dashboard/paymentAdd" class="btn btn-warning">Add New</RouterLink>
                     </div>
-
                 </div>
 
                 <table class="table table-striped ">
@@ -50,15 +44,17 @@ export default {
                         <tr>
                             <th>SL</th>
                             <th>Date</th>
-                            <th>Deposit Amount</th>
+                            <th>Amount</th>
+                            <th>Transaction No.</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <th>1</th>
-                            <td>19-04-2024</td>
-                            <td>18000</td>
+                            <td>14/04/2023</td>
+                            <td>39000</td>
+                            <td>475836</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2">Edit</button>
                                 <button class="btn btn-danger btn-sm">Delete</button>

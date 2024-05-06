@@ -1,23 +1,41 @@
 <script>
-import NavbarView from '../inc/NavbarView.vue';
+import NavbarViewVue from "../inc/NavbarView.vue";
+// import axios from 'axios'
+
 export default {
     components: {
-        NavbarView
+        NavbarViewVue
     },
-    data() {
-        return {
+    // data() {
+    //     return {
+    //         accountType: []
+    //     }
+    // },
+    // mounted() {
+    //     console.log('hello this is anam')
+    //     this.getAccountType();
+    // },
+    // methods: {
+    //     getAccountType() {
+    //         axios.get('http://127.0.0.1:8000/api/accountType')
+    //             .then(res => {
+    //                 this.accountType = (res.data.data)
+    //             })
 
-        }
-    }
+    //     }
 
+    // }
 }
+
 </script>
 
 <template>
     <main>
-        <NavbarView />
+        <NavbarViewVue/>
+        
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="input-group rounded">
@@ -29,18 +47,13 @@ export default {
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Cash Deposit List</h4>
+                        <h4 class="m-3 table_heading">Deposit List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
-
-                        <button class="btn btn-warning">Add New</button>
-
-                        <RouterLink to="/dashboard/cashDepositAdd" class="btn btn-warning">Add New</RouterLink>
-
-
+                        <RouterLink to="/dashboard/depositAdd" class="btn btn-warning">Add New</RouterLink>
+                        
                     </div>
 
                 </div>
@@ -48,17 +61,23 @@ export default {
                 <table class="table table-striped ">
                     <thead class="table_color">
                         <tr>
-                            <th>SL</th>
-                            <th>Date</th>
-                            <th>Deposit Amount</th>
-                            <th>Action</th>
+                            <th scope="col">SL</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Deposit Date</th>
+                            <th scope="col">Deposit Scheme</th>
+                            <th scope="col">Deposit Type</th>
+                            <th scope="col">Interest Rate</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>1</th>
-                            <td>19-04-2024</td>
-                            <td>18000</td>
+                            <th scope="row">1</th>
+                            <th>Rakib Khan</th>
+                            <th>29/04/2024</th>
+                            <th>5000</th>
+                            <th>FDR</th>
+                            <th>12%</th>
                             <td>
                                 <button class="btn btn-success btn-sm me-2">Edit</button>
                                 <button class="btn btn-danger btn-sm">Delete</button>
@@ -69,4 +88,5 @@ export default {
             </div>
         </section>
     </main>
+
 </template>

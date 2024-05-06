@@ -1,16 +1,14 @@
-
-<template>
-    <h1>helko bello</h1>
-</template> 
 <script>
 import NavbarView from '../inc/NavbarView.vue';
 
 export default {
-    components:{
+    components: {
         NavbarView
+
     },
 }
 </script>
+
 
 <template>
     <main>
@@ -20,17 +18,14 @@ export default {
                 <div class="row justify-content-center">
                     <div class="col-md-6">
                         <div class="card-header mt-5">
-                            <h4 class="table_heading">Withdrawal Add</h4>
+                            <h4 class="table_heading">Interest Rate Add</h4>
                         </div>
                         <div class="card-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Date</label>
-                                    <input type="date" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter Date">
-                                    <label for="exampleInputEmail1" class="form-label">Amount</label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter Date">
+                                    <label for="exampleInputEmail1" class="form-label">Interest Rate</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Enter Interest Rate">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
