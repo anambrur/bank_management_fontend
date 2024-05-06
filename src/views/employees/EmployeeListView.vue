@@ -1,6 +1,6 @@
 <template>
     <main>
-        <NavbarViewVue />
+        <NavbarViewVue/>
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
                 <div class="row">
@@ -17,11 +17,10 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Account Type List</h4>
+                        <h4 class="m-3 table_heading">Employee List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
-                        <RouterLink to="/dashboard/accountTypeAdd" class="btn btn-warning">Add New</RouterLink>
-
+                        <RouterLink to="/dashboard/employeeadd" class="btn btn-warning">Add New</RouterLink>
                     </div>
 
                 </div>
@@ -30,17 +29,23 @@
                     <thead class="table_color">
                         <tr>
                             <th>SL</th>
-                            <th>A/C Type</th>
+                            <th>Employee Name</th>
+                            <th>Mobile </th>
+                            <th>Email </th>
+                            <th>Employee Type </th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(d, i) in accountType" :key="i">
+                        <tr v-for="(d, i) in employee" :key="i">
                             <th>{{ i + 1 }}</th>
-                            <td>{{ d.account_type }}</td>
+                            <td>{{ d.employee_name}}</td>
+                            <td>{{ d.mobile}}</td>
+                            <td>{{ d.email}}</td>
+                            <td>{{ d.employee_type.employee_type}}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
-                                <button class="btn btn-danger btn-sm" @click="accountTypeDelete(d.id)">Delete</button>
+                                <button class="btn btn-danger btn-sm" @click="employeeDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -63,34 +68,35 @@ export default {
     },
     data() {
         return {
-            url: 'http://127.0.0.1:8000/api/accountType',
-            accountType: []
+            url: 'http://127.0.0.1:8000/api/employee',
+            employee: []
         }
     },
     mounted() {
-        this.getAccountType();
+        this.getemployee();
     },
     methods: {
-        getAccountType() {
-            axios.get('http://127.0.0.1:8000/api/accountType')
-                .then(res => {
-                    this.accountType = (res.data.data)
+        getemployee() {
+            axios.get(`${this.url}`)
+            .then((result) => {
+                    this.employee = (result.data.data);
+                    //console.log(result.data.data);
                 })
 
         },
        
-        accountTypeDelete(id) {
+        employeeDelete(id) {
             axios.delete(`${this.url}/${id}`)
                 .then(() => {
-                    this.getAccountType();
-                    this.$router.push('/dashboard/accountType');
+                    this.getemployee();
+                    this.$router.push('/dashboard/employee');
                 })
                 .catch(error => {
-                    console.error('Error deleting account type:', error);
+                    console.error('Error deleting employee !', error);
                 });
         },
         edit(id) {
-            this.$router.push({ name: 'editAccountType', params: { id: id } });
+            this.$router.push({ name: 'employeeedit', params: { id: id } });
         },
 
 
