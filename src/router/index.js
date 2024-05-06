@@ -27,6 +27,7 @@ import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
+import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
 
 
 
@@ -64,6 +65,12 @@ const router = createRouter({
       path: '/dashboard/loanTypeAdd',
       name: 'loanTypeAdd',
       component: LoanTypeAddView
+    },
+    {
+      path: '/dashboard/editLoanType/:id',
+      name: 'editLoanType',
+      component: LoanTypeEdit,
+      props: true // Pass route params as props to the component
     },
     {
       path: '/dashboard/loan',
