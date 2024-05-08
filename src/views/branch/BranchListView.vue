@@ -17,10 +17,11 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Employee List</h4>
+                        <h4 class="m-3 table_heading">Branch List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
-                        <RouterLink to="/dashboard/employeeadd" class="btn btn-warning">Add New</RouterLink>
+                        <RouterLink to="/dashboard/branchAdd" class="btn btn-warning">Add New</RouterLink>
+
                     </div>
 
                 </div>
@@ -29,23 +30,22 @@
                     <thead class="table_color">
                         <tr>
                             <th>SL</th>
-                            <th>Employee Name</th>
-                            <th>Mobile </th>
-                            <th>Email </th>
-                            <th>Employee Type </th>
+                            <th>Branch Name</th>
+                            <th>Address</th>
+                            <th>Asset</th>
+                            <th>DEBT</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(d, i) in employee" :key="i">
+                        <tr v-for="(d, i) in branchList" :key="i">
                             <th>{{ i + 1 }}</th>
-                            <td>{{ d.employee_name}}</td>
-                            <td>{{ d.mobile}}</td>
-                            <td>{{ d.email}}</td>
-                            <td>{{ d.employee_type.employee_type}}</td>
+                            <td>{{ d.branch_name}}</td>
+                            <td>{{ d.address}}</td>
+                            <td>{{ d.debt}}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
-                                <button class="btn btn-danger btn-sm" @click="employeeDelete(d.id)">Delete</button>
+                                <button class="btn btn-danger btn-sm" @click="getbranchDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -68,35 +68,35 @@ export default {
     },
     data() {
         return {
-            url: 'http://127.0.0.1:8000/api/employee',
-            employee: []
+            url: 'http://127.0.0.1:8000/api/branch',
+            branchList: []
         }
     },
     mounted() {
-        this.getemployee();
+        this.getbranch();
     },
     methods: {
-        getemployee() {
+        getbranch() {
             axios.get(`${this.url}`)
             .then((result) => {
-                    this.employee = (result.data.data);
+                    this.branchList = (result.data.data);
                     //console.log(result.data.data);
                 })
 
         },
        
-        employeeDelete(id) {
+        getbranchDelete(id) {
             axios.delete(`${this.url}/${id}`)
                 .then(() => {
-                    this.getemployee();
-                    this.$router.push('/dashboard/employee');
+                    this.getbranch();
+                    this.$router.push('/dashboard/branch');
                 })
                 .catch(error => {
-                    console.error('Error deleting employee !', error);
+                    console.error('Error deleting branch Type:', error);
                 });
         },
         edit(id) {
-            this.$router.push({ name: 'employeeEdit', params: { id: id } });
+            this.$router.push({ name: 'branchEdid', params: { id: id } });
         },
 
 

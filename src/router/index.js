@@ -30,8 +30,8 @@ import LoanProposalAddView from '@/views/loan_proposal/LoanProposalAddView.vue'
 import DepositTypeAdd from '@/views/deposit_type/DepositTypeAdd.vue'
 import DepositAdd from '@/views/deposit/DepositAdd.vue'
 
-import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
-import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
+// import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
+// import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
 
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
@@ -39,12 +39,16 @@ import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
 import InterestAdd from '@/views/interest/InterestAdd.vue'
 import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
-import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
-import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
+// import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
+// import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
 import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
+import EmployeeEditView from '@/views/employees/EmployeeEditView.vue'
+import BranchListView from '@/views/branch/BranchListView.vue'
+import BranchAddView from '@/views/branch/BranchAddView.vue'
+import BranchEditView from '@/views/branch/BranchEditView.vue'
 
 
 
@@ -245,9 +249,34 @@ const router = createRouter({
       component: EmployeeAdd
     },
     {
+      path: '/dashboard/employeeEdit/:id',
+      name: 'employeeEdit',
+      component: EmployeeEditView,
+      props: true
+      
+    },
+
+    {
       path: '/dashboard/customerList/',
       name: 'customerList',
       component: CustomerView,
+    },
+    {
+      path: '/dashboard/branch',
+      name: 'branch',
+      component: BranchListView
+    },
+    {
+      path: '/dashboard/branchAdd',
+      name: 'branchAdd',
+      component: BranchAddView
+    },
+
+    {
+      path: '/dashboard/branchEdid/:id',
+      name: 'branchEdid',
+      component: BranchEditView,
+      props: true
     },
   ]
 })

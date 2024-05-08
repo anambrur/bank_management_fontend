@@ -43,6 +43,19 @@ export default {
                     </li>
                 </ul>
             </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Branch</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/branch">Branch List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />

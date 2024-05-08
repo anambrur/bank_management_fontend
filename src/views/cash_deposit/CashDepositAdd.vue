@@ -1,7 +1,5 @@
 
-<template>
-    <h1>helko bello</h1>
-</template> 
+
 <script>
 import NavbarView from '../inc/NavbarView.vue';
 
