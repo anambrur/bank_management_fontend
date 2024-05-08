@@ -9,8 +9,11 @@ export default {
 
 <template>
     <nav class="sidebar">
-        <div class="logo d-flex justify-content-between">
-            <a href="index.html"><img src="/img/logo.png" alt="image" /></a>
+        <div class="logo d-flex justify-content-between p-0 m-0">
+            <a href="#"><img class="" src="/img/bank_logo.jpg" alt="image" /></a>
+            <!-- <a href="">
+                <h3><span>ABSRM</span></h3>
+            </a> -->
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
             </div>
@@ -25,8 +28,8 @@ export default {
                     <span>Dashboard</span>
                 </a>
                 <ul>
-                    <li><a class="active" href="index.html">Dashboard 1</a></li>
-                    <li><a href="index_2.html">Dashboard 2</a></li>
+                    <!-- <li><a class="active" href="index.html">Dashboard 1</a></li>
+                    <li><a href="index_2.html">Dashboard 2</a></li> -->
                 </ul>
             </li>
             <li class="side_menu_title">
@@ -146,7 +149,7 @@ export default {
                     <li>
                         <RouterLink to="/dashboard/employee">Employee List</RouterLink>
                     </li>
-                    
+
                 </ul>
             </li>
 
@@ -164,6 +167,18 @@ export default {
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Card Type</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/cardType">Card Type List</RouterLink>
+                        <RouterLink to="/dashboard/cardDetails">Card Details List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
                     <span>Interest</span>
                 </a>
                 <ul>
@@ -172,17 +187,7 @@ export default {
                     </li>
                 </ul>
             </li>
-            <li class>
-                <a class="has-arrow" href="#" aria-expanded="false">
-                    <img src="/img/menu-icon/3.svg" alt="image" />
-                    <span>Applications</span>
-                </a>
-                <ul>
-                    <li><a href="mail_box.html">Mail Box</a></li>
-                    <li><a href="chat.html">Chat</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-            </li>
+
             <li class="side_menu_title">
                 <span>Components</span>
             </li>
