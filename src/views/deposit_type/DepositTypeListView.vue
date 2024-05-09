@@ -68,8 +68,6 @@ export default {
                     </thead>
                     <tbody>
                         <tr v-for="(d,i) in depositType" :key="i">
-                            <th>{{ i + 1}}</th>
-                            <td>{{d.deposite_type}}</td>
                             <th>{{i + 1}}</th>
                             <td>{{d.deposit_type}}</td>
                             <td>
