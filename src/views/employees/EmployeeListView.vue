@@ -96,7 +96,7 @@ export default {
                 });
         },
         edit(id) {
-            this.$router.push({ name: 'employeeedit', params: { id: id } });
+            this.$router.push({ name: 'employeeEdit', params: { id: id } });
         },
 
 

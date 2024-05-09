@@ -9,7 +9,7 @@ export default {
     data() {
         return {
             url:'http://127.0.0.1:8000/api/loanProposal',
-            loanProposal: []
+            LoanProposal: []
         }
     },
     mounted() {
@@ -19,7 +19,7 @@ export default {
         getLoanProposal() {
             axios.get(`${this.url}`)
                 .then(res => {
-                    this.loan = (res.data.data)
+                    this.LoanProposal = (res.data.data)
                 })
 
         },
@@ -34,7 +34,7 @@ export default {
             });
         },
         edit(id) {
-            this.$router.push({name: 'editLoan', params:{id:id}});
+            this.$router.push({name: 'editloanProposal', params:{id:id}});
         },
     },
 }
@@ -82,10 +82,10 @@ export default {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(d,i) in loanProposal" :key="i">
+                        <tr v-for="(d,i) in LoanProposal" :key="i">
                             <th>{{i + 1}}</th>
                             <th>{{d.customer.customer_name}}</th>
-                            <th>{{d.loanType.loan_type}}</th>
+                            <th>{{d.loan_type.loan_type}}</th>
                             <th>{{d.amount}}</th>
                             <th>{{d.date}}</th>
                             <th>{{d.tenure}}</th>

@@ -1,10 +1,8 @@
 <template>
     <main>
         <NavbarViewVue/>
-        
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
-
                 <div class="row">
                     <div class="col-md-4">
                         <div class="input-group rounded">
@@ -16,13 +14,14 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Loan List</h4>
+                        <h4 class="m-3 table_heading">Branch List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
-                        <RouterLink to="/dashboard/loanAdd" class="btn btn-warning">Add New</RouterLink>
-                        
+                        <RouterLink to="/dashboard/branchAdd" class="btn btn-warning">Add New</RouterLink>
+
                     </div>
 
                 </div>
@@ -30,26 +29,23 @@
                 <table class="table table-striped ">
                     <thead class="table_color">
                         <tr>
-                            <th scope="col">SL</th>
-                            <th scope="col">Customer Name</th>
-                            <th scope="col">Loan Type</th>
-                            <th scope="col">Loan Proposal Amount</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Action</th>
+                            <th>SL</th>
+                            <th>Branch Name</th>
+                            <th>Address</th>
+                            <th>Asset</th>
+                            <th>DEBT</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(d,i) in loan" :key="i">
+                        <tr v-for="(d, i) in branchList" :key="i">
                             <th>{{ i + 1 }}</th>
-                            <th>{{d.customer.cutomer_name}}</th>
-                            <th>{{d.loan_type.loan_type}}</th>
-                            <th>{{d.loan_proposal.amount}}</th>
-                            <th>{{d.amount}}</th>
-                            <th>{{d.date}}</th>
+                            <td>{{ d.branch_name}}</td>
+                            <td>{{ d.address}}</td>
+                            <td>{{ d.debt}}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
-                                <button class="btn btn-danger btn-sm" @click="loanDelete(d.id)">Delete</button>
+                                <button class="btn btn-danger btn-sm" @click="getbranchDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -59,6 +55,8 @@
     </main>
 
 </template>
+
+
 
 <script>
 import NavbarViewVue from "../inc/NavbarView.vue";
@@ -70,35 +68,40 @@ export default {
     },
     data() {
         return {
-            url:'http://127.0.0.1:8000/api/loan',
-            loan: []
+            url: 'http://127.0.0.1:8000/api/branch',
+            branchList: []
         }
     },
     mounted() {
-        this.getloan();
+        this.getbranch();
     },
     methods: {
-        getloan() {
+        getbranch() {
             axios.get(`${this.url}`)
-                .then(res => {
-                    this.loan = (res.data.data)
+            .then((result) => {
+                    this.branchList = (result.data.data);
+                    //console.log(result.data.data);
                 })
 
         },
-        loanDelete(id){
+       
+        getbranchDelete(id) {
             axios.delete(`${this.url}/${id}`)
-            .then(()=> {
-                this.getLoan();
-                this.$router.push('/dashboard/loan');
-            })
-            .catch(error => {
-                console.error('Error Deleting Loan!',error);
-            });
+                .then(() => {
+                    this.getbranch();
+                    this.$router.push('/dashboard/branch');
+                })
+                .catch(error => {
+                    console.error('Error deleting branch Type:', error);
+                });
         },
         edit(id) {
-            this.$router.push({name: 'editLoan', params:{id:id}});
+            this.$router.push({ name: 'branchEdid', params: { id: id } });
         },
+
+
     },
+    
 }
 
 </script>

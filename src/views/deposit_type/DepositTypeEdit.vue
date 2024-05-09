@@ -8,32 +8,33 @@ export default {
     },
     data() {
         return {
+            url: 'http://127.0.0.1:8000/api/depositType',
             depositType: '',
-            depositTypeError: ''
+            depositTypeError: '',
+            deposit_type: '',
+            id: ''
         }
     },
     mounted() {
-        // this.getdepositType();
+        this.getEditData();
     },
     methods: {
-        saveDepositType() {
-            const DepositTypeData = {
-                deposit_type: this.depositType
-            }
-            axios.post('http://127.0.0.1:8000/api/depositType', DepositTypeData)
+        getEditData() {
+            axios.get(`${this.url}/${this.$route.params.id}/edit`)
                 .then(res => {
-                    this.depositType = (res.data.data)
-                    console.log(res.data.data)
+                    this.deposit_type = (res.data.data.deposit_type)
+                    this.id = (res.data.data.id)
+                })
+        },
+        updateDepositType() {
+            axios.put(`${this.url}/${this.id}`, {
+                deposit_type: this.deposit_type
+            })
+                .then(res => {
                     this.$router.push("/dashboard/depositType")
                 })
-
         },
-        handleSubmit() {
-            if (this.depositType.length < 1) {
-                this.depositTypeError = 'Deposit type is required';
-                return;
-            }
-        }
+
 
     },
     watch: {
@@ -59,16 +60,17 @@ export default {
                             <h4 class=" table_heading">Deposit Type Add</h4>
                         </div>
                         <div class="card-body">
-                            <form @submit.prevent="handleSubmit">
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Deposit Type</label>
-                                    <input type="text" v-model="depositType" class="form-control" id="exampleInputEmail1"
+                                    <input type="text" v-model="deposit_type" class="form-control" id="exampleInputEmail1"
                                         placeholder="Enter Loan Type">
-                                    <p style="color:red" v-if="depositTypeError">{{ depositTypeError }}</p>
+                                    <p style="color:red" v-if="depositTypeError">
+                                        {{ depositTypeError }}
+                                    </p>
                                 </div>
-                                <button type="submit" @click="saveDepositType" class="btn btn-primary">Submit</button>
-                            </form>
+                                <button type="submit" @click="updateDepositType" class="btn btn-primary">Submit</button>
+
                         </div>
                     </div>
                 </div>

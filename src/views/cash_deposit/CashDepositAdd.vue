@@ -1,4 +1,7 @@
 
+
+
+
 <script>
 import NavbarView from '../inc/NavbarView.vue';
 
