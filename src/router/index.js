@@ -28,9 +28,6 @@ import LoanAddView from '@/views/loan/LoanAddView.vue'
 import LoanProposalAddView from '@/views/loan_proposal/LoanProposalAddView.vue'
 import DepositTypeAdd from '@/views/deposit_type/DepositTypeAdd.vue'
 import DepositAdd from '@/views/deposit/DepositAdd.vue'
- HEAD
-import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
-import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
 
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
@@ -42,6 +39,9 @@ import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
 import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
+import DepositTypeEdit from '@/views/deposit_type/DepositTypeEdit.vue'
+import DepositEdit from '@/views/deposit/DepositEdit.vue'
+import LoanProposalEdit from '@/views/loan_proposal/LoanProposalEdit.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -103,6 +103,12 @@ const router = createRouter({
       component: LoanProposalAddView
     },
     {
+      path: '/dashboard/editloanProposal/:id',
+      name: 'editloanProposal',
+      component: LoanProposalEdit,
+      props: true
+    },
+    {
       path: '/dashboard/depositType',
       name: 'depositType',
       component: DepositTypeListView
@@ -113,6 +119,12 @@ const router = createRouter({
       component: DepositTypeAdd
     },
     {
+      path: '/dashboard/editdepositType/:id',
+      name: 'editdepositType',
+      component: DepositTypeEdit,
+      props: true // Pass route params as props to the component
+    },
+    {
       path: '/dashboard/deposit',
       name: 'deposit',
       component: DepositListView
@@ -121,6 +133,12 @@ const router = createRouter({
       path: '/dashboard/depositAdd',
       name: 'depositAdd',
       component: DepositAdd
+    },
+    {
+      path: '/dashboard/editdeposit/:id',
+      name: 'editdeposit',
+      component: DepositEdit,
+      props: true
     },
     {
       path: '/dashboard/withdrawal',

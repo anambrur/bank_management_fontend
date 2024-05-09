@@ -9,51 +9,98 @@ export default {
     data() {
         return {
             url: 'http://127.0.0.1:8000/api/loanProposal',
+            customer: [],
+            loanType: [],
             selectCustomer: '',
             selectLoanType: '',
             amount: '',
             date: '',
             tenure: '',
-            loanPorosal:''
+            loanPorosal:'',
+            customerError: '',
+            loanTypeError: '',
+            amountError: '',
+            dateError: '',
+            tenureError: '',
+
 
         }
     },
     mounted() {
-        this.getloanProposal();
+        this.getcustomer();
+        this.getloanType();
     },
     methods: {
-        getloanProposal() {
-            axios.get('http://127.0.0.1:8000/api/loanProposal')
+        getcustomer() {
+            axios.get('http://127.0.0.1:8000/api/customer')
                 .then(res => {
-                    this.loanPorosal = (res.data.data)
-                    // console.log(res)
+                    this.customer = (res.data.data)
                 })
+                .catch(error => {
+                    console.error('Error fetching customer',error);
+                });
+        },
+        getloanType() {
+            axios.get('http://127.0.0.1:8000/api/loanType')
+                .then(res => {
+                    this.loanType = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching loanType',error);
+                });
 
         },
-        saveloanPorosal() {
-            this.axios.post(`${this.url}`, {
+
+        saveLoanProposal() {
+            const data={
                 customer_id: this.selectCustomer,
                 loan_type_id: this.selectLoanType,
                 amount: this.amount,
                 date: this.date,
                 tenure: this.tenure
-
+            };
+            axios.post(this.url, data)
+            .then(res => {
+                this.$router.push('/dashboard/loanProposal');
             })
-                .then(res => {
-                    this.$router.push("/dashboard/loanPorosal")
-                })
+            .catch(error => {
+                console.error('Error fetching loanProposal',error);
+            });
+
+        },
+
+        clearErrors() {
+            this.customerError ,
+            this.loanTypeError ,
+            this.amountError ,
+            this.dateError ,
+            this.tenureError         
         }
+
+        // saveloanPorosal() {
+        //     this.axios.post(`${this.url}`, {
+        //         customer_id: this.selectCustomer,
+        //         loan_type_id: this.selectLoanType,
+        //         amount: this.amount,
+        //         date: this.date,
+        //         tenure: this.tenure
+
+        //     })
+        //         .then(res => {
+        //             this.$router.push("/dashboard/loanPorosal")
+        //         })
+        // }
 
     },
-    watch: {
-        'loanPorosal': function () {
-            if (this.loanPorosal.length < 4) {
-                this.loanPorosalError = 'Loan Proposal Required'
-            } else {
-                this.loanPorosalError = ''
-            }
-        }
-    }
+    // watch: {
+    //     'loanPorosal': function () {
+    //         if (this.loanPorosal.length < 4) {
+    //             this.loanPorosalError = 'Loan Proposal Required'
+    //         } else {
+    //             this.loanPorosalError = ''
+    //         }
+    //     }
+    // }
 }
 
 </script>
@@ -72,39 +119,42 @@ export default {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Customer Name</label>
-                                        <select class="form-select col-md-10" v-model="selectCustomer">
-                                            <option disabled value="">Customer Name</option>
-                                            <option v-for="(d, i) in customers" :key="i" :value="d.id">{{ d.customer}}</option>
-                                        </select>
-                                        <p style="color:red" v-if="loanPorosalError">{{ loanPorosalError }}</p>
-                                    </div>
+                                    <label for="exampleInputEmail1" class="form-label">Customer Name</label>
+                                    <select v-model="selectCustomer" class="form-select col-md-10" >
+                                        <option value="">Customer Name</option>
+                                        <option v-for="(d, i) in customer" :key="i" :value="d.id" >{{d.customer_name}}</option>
+                                        <p style="color:red" v-if="customerError">{{ customerError }}</p>
+                                    </select>
+                                </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Loan Type</label>
                                         <select class="form-select col-md-10" v-model="selectLoanType">
                                             <option disabled value=""> Please Select the Loan Type </option>
-                                            <option v-for="(d, i) in loanTypes" :key="i" :value="d.id"></option>
+                                            <option v-for="(d, i) in loanType" :key="i" :value="d.id">{{ d.loan_type }}</option>
                                         </select>
                                         <p style="color:red" v-if="loanTypeError">{{ loanTypeError }}</p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Amount</label>
-                                        <input type="text" class="form-control"
+                                        <input type="text" v-model="amount" class="form-control"
                                             placeholder="Enter Loan Proposan Amount">
+                                            <p style="color:red" v-if="amountError">{{ amountError }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Date</label>
-                                        <input type="date" class="form-control" placeholder="Enter Date">
-                                    </div>
+                                    <label for="exampleInputEmail1" class="form-label">Date</label>
+                                    <input v-model="date" type="date" class="form-control" placeholder="Enter Deposit Date">
+                                    <p style="color:red" v-if="dateError">{{ dateError }}</p>
+                                </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label"> Tenure(Month)</label>
-                                        <input type="text" class="form-control" placeholder="Enter Amount">
+                                        <input type="text" v-model="tenure" class="form-control" placeholder="Enter Amount">
+                                        <p style="color:red" v-if="tenureError">{{ tenureError }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button @click="saveLoanProposal" type="submit" class="btn btn-primary">Submit</button>
 
                         </div>
                     </div>

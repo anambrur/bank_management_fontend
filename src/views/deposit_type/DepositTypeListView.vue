@@ -22,9 +22,23 @@ export default {
                     this.depositType = (res.data.data)
                 })
 
-        }
+        },
+        depositTypeDelete(id) {
+            axios.delete(`${this.url}/${id}`)
+                .then(() => {
+                    this.getdepositType();
+                    this.$router.push('/dashboard/depositType');
+                })
+                .catch(error => {
+                    console.error('Error deleting deposit type:', error);
+                });
+        },
+        edit(id) {
+            this.$router.push({ name: 'editdepositType', params: { id: id } });
+        },
 
-    }
+
+    },
 }
 
 </script>
@@ -71,8 +85,8 @@ export default {
                             <th>{{i + 1}}</th>
                             <td>{{d.deposit_type}}</td>
                             <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
+                                <button class="btn btn-danger btn-sm" @click="depositTypeDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>

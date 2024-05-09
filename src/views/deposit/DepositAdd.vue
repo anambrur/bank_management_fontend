@@ -1,32 +1,94 @@
 <script>
 import NavbarViewVue from "../inc/NavbarView.vue";
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
     components: {
         NavbarViewVue
     },
-    // data() {
-    //     return {
-    //         depositAdd: {
-    //             name:''
-    //         }
-    //     }
-    // },
-    // mounted() {
-    //     // console.log('saveloanproposal')
-    //     this.savedeposit();
-    // },
-    // methods: {
-    //     savedeposit() {
-    //         axios.post('http://127.0.0.1:8000/api/deposit')
-    //             .then(res => {
-    //                 this.deposit = (res.data.data)
-    //             })
+    data() {
+        return {
+            url: 'http://127.0.0.1:8000/api/deposit',
+            customer: [],
+            depositType: [],
+            interest: [],
+            deposit: '',
+            selectCustomer: '',
+            selectDepositType: '',
+            selectInterestRate: '',
+            date: '',
+            depositScheme: '',
+            customerError: '',
+            depositTypeError: '',
+            interestError: '',
+            dateError: '',
+            depositSchemeError: '',
 
-    //     }
+        }
+    },
+    mounted() {
+        this.getdepositType();
+        this.getcustomer();
+        this.getinterest();
+    },
+    methods: {
+        getcustomer() {
+            axios.get('http://127.0.0.1:8000/api/customer')
+                .then(res => {
+                    this.customer = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching customer',error);
+                });
 
-    // }
+        },
+        getdepositType() {
+            axios.get('http://127.0.0.1:8000/api/depositType')
+                .then(res => {
+                    this.depositType = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching Deposit types',error);
+                });
+
+        },
+        getinterest() {
+            axios.get('http://127.0.0.1:8000/api/interest')
+                .then(res => {
+                    this.interest = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching Deposit types',error);
+                });
+
+        },
+
+        saveDeposit() {
+            const data={
+                customer_id: this.selectCustomer,
+                deposit_type_id: this.selectDepositType,
+                interest_id: this.selectInterestRate,
+                date: this.date,
+                deposit_scheme: this.depositScheme
+            };
+            axios.post(this.url, data)
+            .then(res => {
+                this.$router.push('/dashboard/deposit');
+            })
+            .catch(error => {
+                console.error('Error fetching Deposit',error);
+            });
+
+        },
+
+        clearErrors() {
+            this.customerError ,
+            this.depositTypeError ,
+            this.interestError ,
+            this.dateError ,
+            this.depositSchemeError         
+        }
+    }
 }
 
 </script>
@@ -45,32 +107,44 @@ export default {
                           <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Customer Name">
+                                    <label for="exampleInputEmail1" class="form-label">Customer Name</label>
+                                    <select v-model="selectCustomer" class="form-select col-md-10" >
+                                        <option value="">Customer Name</option>
+                                        <option v-for="(d, i) in customer" :key="i" :value="d.id" >{{d.customer_name}}</option>
+                                        <p style="color:red" v-if="customerError">{{ customerError }}</p>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Deposit Type</label>
-                                    <select class="form-select col-md-10" >
-                                        <option value="0">Deposit Type </option>
+                                    <select v-model="selectDepositType" class="form-select col-md-10" >
+                                        <option value="">Deposit Type </option>
+                                        <option v-for="(d, i) in depositType" :key="i" :value="d.id" >{{d.deposit_type}}</option>
+                                        <p style="color:red" v-if="depositTypeError">{{ depositTypeError }}</p>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Interest Rate</label>
-                                    <input type="text" class="form-control" placeholder="Enter Interest Rate">
+                                    <select v-model="selectInterestRate" class="form-select col-md-10" >
+                                        <option value="">Interest Rate</option>
+                                        <option v-for="(d, i) in interest" :key="i" :value="d.id" >{{d.interest_rate}}</option>
+                                        <p style="color:red" v-if="interestError">{{ interestError }}</p>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Deposit Scheme</label>
-                                    <input type="text" class="form-control" placeholder="Enter Deposit Scheme">
+                                    <label for="exampleInputEmail1" class="form-label">Date</label>
+                                    <input v-model="date" type="date" class="form-control" placeholder="Enter Deposit Date">
+                                    <p style="color:red" v-if="dateError">{{ dateError }}</p>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Date</label>
-                                    <input type="date" class="form-control" placeholder="Enter Deposit Date">
+                                    <label for="exampleInputEmail1" class="form-label">Deposit Scheme</label>
+                                    <input v-model="depositScheme" type="text" class="form-control" placeholder="Enter Deposit Scheme">
+                                    <p style="color:red" v-if="depositSchemeError">{{ depositSchemeError }}</p>
                                 </div>
                             </div>
                           </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button @click="saveDeposit" type="submit" class="btn btn-primary">Submit</button>
                         
                         </div>
                     </div>

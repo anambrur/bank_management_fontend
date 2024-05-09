@@ -1,46 +1,3 @@
-<script>
-import NavbarViewVue from "../inc/NavbarView.vue";
-import axios from 'axios'
-
-export default {
-    components: {
-        NavbarViewVue
-    },
-    data() {
-        return {
-            url:'http://127.0.0.1:8000/api/loan',
-            loan: []
-        }
-    },
-    mounted() {
-        this.getLoan();
-    },
-    methods: {
-        getLoan() {
-            axios.get(`${this.url}`)
-                .then(res => {
-                    this.loan = (res.data.data)
-                })
-
-        },
-        loanDelete(id){
-            axios.delete(`${this.url}/${id}`)
-            .then(()=> {
-                this.getLoan();
-                this.$router.push('/dashboard/loan');
-            })
-            .catch(error => {
-                console.error('Error Deleting Loan!',error);
-            });
-        },
-        edit(id) {
-            this.$router.push({name: 'editLoan', params:{id:id}});
-        },
-    },
-}
-
-</script>
-
 <template>
     <main>
         <NavbarViewVue/>
@@ -86,8 +43,8 @@ export default {
                         <tr v-for="(d,i) in loan" :key="i">
                             <th>{{ i + 1 }}</th>
                             <th>{{d.customer.cutomer_name}}</th>
-                            <th>{{d.loan_type_id}}</th>
-                            <th>{{d.loan_proposal_id}}</th>
+                            <th>{{d.loan_type.loan_type}}</th>
+                            <th>{{d.loan_proposal.amount}}</th>
                             <th>{{d.amount}}</th>
                             <th>{{d.date}}</th>
                             <td>
@@ -102,3 +59,46 @@ export default {
     </main>
 
 </template>
+
+<script>
+import NavbarViewVue from "../inc/NavbarView.vue";
+import axios from 'axios'
+
+export default {
+    components: {
+        NavbarViewVue
+    },
+    data() {
+        return {
+            url:'http://127.0.0.1:8000/api/loan',
+            loan: []
+        }
+    },
+    mounted() {
+        this.getloan();
+    },
+    methods: {
+        getloan() {
+            axios.get(`${this.url}`)
+                .then(res => {
+                    this.loan = (res.data.data)
+                })
+
+        },
+        loanDelete(id){
+            axios.delete(`${this.url}/${id}`)
+            .then(()=> {
+                this.getLoan();
+                this.$router.push('/dashboard/loan');
+            })
+            .catch(error => {
+                console.error('Error Deleting Loan!',error);
+            });
+        },
+        edit(id) {
+            this.$router.push({name: 'editLoan', params:{id:id}});
+        },
+    },
+}
+
+</script>
