@@ -9,11 +9,11 @@ export default {
 
 <template>
     <nav class="sidebar">
-        <div class="logo d-flex justify-content-between">
-            <!-- <a href="index.html"><img src="/img/logo.png" alt="image" /></a> -->
-            <a href="">
+        <div class="logo d-flex justify-content-between p-0 m-0">
+            <a href="#"><img class="" src="/img/bank_logo.jpg" alt="image" /></a>
+            <!-- <a href="">
                 <h3><span>ABSRM</span></h3>
-            </a>
+            </a> -->
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
             </div>
@@ -28,8 +28,8 @@ export default {
                     <span>Dashboard</span>
                 </a>
                 <ul>
-                    <li><a class="active" href="index.html">Dashboard 1</a></li>
-                    <li><a href="index_2.html">Dashboard 2</a></li>
+                    <!-- <li><a class="active" href="index.html">Dashboard 1</a></li>
+                    <li><a href="index_2.html">Dashboard 2</a></li> -->
                 </ul>
             </li>
             <li class="side_menu_title">
@@ -46,6 +46,19 @@ export default {
                     </li>
                 </ul>
             </li>
+
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Branch</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/branch">Branch List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+
             <li class>
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="/img/menu-icon/2.svg" alt="image" />
@@ -148,6 +161,18 @@ export default {
                 <ul>
                     <li>
                         <RouterLink to="/dashboard/payment">Payment List</RouterLink>
+                    </li>
+                </ul>
+            </li>
+            <li class>
+                <a class="has-arrow" href="#" aria-expanded="false">
+                    <img src="/img/menu-icon/2.svg" alt="image" />
+                    <span>Card Type</span>
+                </a>
+                <ul>
+                    <li>
+                        <RouterLink to="/dashboard/cardType">Card Type List</RouterLink>
+                        <RouterLink to="/dashboard/cardDetails">Card Details List</RouterLink>
                     </li>
                 </ul>
             </li>

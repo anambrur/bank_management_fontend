@@ -1,6 +1,6 @@
 <script>
 import NavbarViewVue from "../inc/NavbarView.vue";
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
     components: {
@@ -8,48 +8,46 @@ export default {
     },
     data() {
         return {
-            url:'http://127.0.0.1:8000/api/depositType',
-            depositType: []
+            url: 'http://127.0.0.1:8000/api/cardDetails',
+            cardDetails: []
         }
     },
     mounted() {
-        this.getdepositType();
+        this.getCardDetails();
     },
     methods: {
-        getdepositType() {
-            axios.get('http://127.0.0.1:8000/api/depositType')
+        getCardDetails() {
+            axios.get('http://127.0.0.1:8000/api/cardDetails')
                 .then(res => {
-                    this.depositType = (res.data.data)
+                    this.cardDetails = (res.data.data)
                 })
 
         },
-        depositTypeDelete(id) {
+       
+        cardDetailsDelete(id) {
             axios.delete(`${this.url}/${id}`)
                 .then(() => {
-                    this.getdepositType();
-                    this.$router.push('/dashboard/depositType');
+                    this.getCardDetails();
+                    this.$router.push('/dashboard/cardDetails');
                 })
                 .catch(error => {
-                    console.error('Error deleting deposit type:', error);
+                    console.error('Error deleting card details:', error);
                 });
         },
         edit(id) {
-            this.$router.push({ name: 'editdepositType', params: { id: id } });
+            this.$router.push({ name: 'editCardDetails', params: { id: id } });
         },
 
-
-    },
+    }
 }
 
 </script>
 
 <template>
     <main>
-        <NavbarViewVue/>
-        
+        <NavbarViewVue />
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
-
                 <div class="row">
                     <div class="col-md-4">
                         <div class="input-group rounded">
@@ -61,13 +59,14 @@ export default {
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Deposit Type List</h4>
+                        <h4 class="m-3 table_heading">Card Details List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
-                        <RouterLink to="/dashboard/depositTypeAdd" class="btn btn-warning">Add New</RouterLink>
-                        
+                        <RouterLink to="/dashboard/cardDetailsAdd" class="btn btn-warning">Add New</RouterLink>
+
                     </div>
 
                 </div>
@@ -75,22 +74,32 @@ export default {
                 <table class="table table-striped ">
                     <thead class="table_color">
                         <tr>
-                            <th scope="col">SL</th>
-                            <th scope="col">Deposit Type</th>
-                            <th scope="col">Action</th>
+                            <th>SL</th>
+                            <th>Name</th>
+                            <th>Card Number</th>
+                            <th>Customer</th>
+                            <th>Card Type</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(d,i) in depositType" :key="i">
-                            <th>{{ i + 1}}</th>
-                            <td>{{d.deposite_type}}</td>
-                            <th>{{i + 1}}</th>
-                            <td>{{d.deposit_type}}</td>
+
+                        <!-- <tr>
+                            <td>1</td>
+                            <td>Visa Card</td>
+                            <td>
+                                <button class="btn btn-success btn-sm me-2">Edit</button>
+                                <button class="btn btn-danger btn-sm ">Delete</button>
+                            </td>
+                        </tr> -->
+                         <tr v-for="(d, i) in cardType" :key="i">
+                            <th>{{ i + 1 }}</th>
+                            <td>{{ d.card_type }}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
-                                <button class="btn btn-danger btn-sm" @click="depositTypeDelete(d.id)">Delete</button>
+                                <button class="btn btn-danger btn-sm" @click="cardDetailsDelete(d.id)">Delete</button>
                             </td>
-                        </tr>
+                        </tr> 
                     </tbody>
                 </table>
             </div>
