@@ -38,7 +38,7 @@ import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
 import InterestAdd from '@/views/interest/InterestAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
 import PaymentEdit from '@/views/payment/PaymentEdit.vue'
-import PaymentAdd from '@/views/payment/PaymentAdd.vue'
+
 
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
