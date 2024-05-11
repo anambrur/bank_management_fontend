@@ -276,6 +276,8 @@ const router = createRouter({
       component: EmployeeAdd
     },
     {
+
+      path: '/dashboard/customerList',
       path: '/dashboard/employeeEdit/:id',
       name: 'employeeEdit',
       component: EmployeeEditView,
@@ -283,11 +285,12 @@ const router = createRouter({
     },
     {
       path: '/dashboard/customerList/',
+
       name: 'customerList',
       component: CustomerView,
     },
     {
-      path: '/dashboard/cardType/',
+      path: '/dashboard/cardType',
       name: 'cardType',
       component: CardTypeListView
     },
@@ -303,7 +306,7 @@ const router = createRouter({
       props: true // Pass route params as props to the component
     },
     {
-      path: '/dashboard/cardDetails/',
+      path: '/dashboard/cardDetails',
       name: 'cardDetails',
       component: CardDetailsListView
     },
