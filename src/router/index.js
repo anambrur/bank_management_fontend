@@ -35,16 +35,26 @@ import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
 import InterestAdd from '@/views/interest/InterestAdd.vue'
 import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
+
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
 import CustomerView from '@/views/Customer/CustomerView.vue'
 import LoanTypeEdit from '@/views/loan_type/LoanTypeEdit.vue'
+import DepositTypeEdit from '@/views/deposit_type/DepositTypeEdit.vue'
+import DepositEdit from '@/views/deposit/DepositEdit.vue'
+import LoanProposalEdit from '@/views/loan_proposal/LoanProposalEdit.vue'
+
+import EmployeeEditView from '@/views/employees/EmployeeEditView.vue'
+import BranchListView from '@/views/branch/BranchListView.vue'
+import BranchAddView from '@/views/branch/BranchAddView.vue'
+import BranchEditView from '@/views/branch/BranchEditView.vue'
 import CardTypeListView from '@/views/card_type/CardTypeListView.vue'
 import CardTypeAdd from '@/views/card_type/CardTypeAdd.vue'
 import CardTypeEdit from '@/views/card_type/CardTypeEdit.vue'
 import CardDetailsListView from '@/views/card/CardDetailsListView.vue'
 import CardDetailsEdit from '@/views/card/CardDetailsEdit.vue'
 import CardDetailsAdd from '@/views/card/CardDetailsAdd.vue'
+
 
 
 const router = createRouter({
@@ -107,6 +117,12 @@ const router = createRouter({
       component: LoanProposalAddView
     },
     {
+      path: '/dashboard/editloanProposal/:id',
+      name: 'editloanProposal',
+      component: LoanProposalEdit,
+      props: true
+    },
+    {
       path: '/dashboard/depositType',
       name: 'depositType',
       component: DepositTypeListView
@@ -117,6 +133,12 @@ const router = createRouter({
       component: DepositTypeAdd
     },
     {
+      path: '/dashboard/editdepositType/:id',
+      name: 'editdepositType',
+      component: DepositTypeEdit,
+      props: true // Pass route params as props to the component
+    },
+    {
       path: '/dashboard/deposit',
       name: 'deposit',
       component: DepositListView
@@ -125,6 +147,12 @@ const router = createRouter({
       path: '/dashboard/depositAdd',
       name: 'depositAdd',
       component: DepositAdd
+    },
+    {
+      path: '/dashboard/editdeposit/:id',
+      name: 'editdeposit',
+      component: DepositEdit,
+      props: true
     },
     {
       path: '/dashboard/withdrawal',
@@ -240,7 +268,18 @@ const router = createRouter({
       component: EmployeeAdd
     },
     {
+
       path: '/dashboard/customerList',
+      path: '/dashboard/employeeEdit/:id',
+      name: 'employeeEdit',
+      component: EmployeeEditView,
+      props: true
+      
+    },
+
+    {
+      path: '/dashboard/customerList/',
+
       name: 'customerList',
       component: CustomerView
     },
@@ -275,6 +314,23 @@ const router = createRouter({
       name: 'editCardDetails',
       component: CardDetailsEdit,
       props: true // Pass route params as props to the component
+    },
+    {
+      path: '/dashboard/branch',
+      name: 'branch',
+      component: BranchListView
+    },
+    {
+      path: '/dashboard/branchAdd',
+      name: 'branchAdd',
+      component: BranchAddView
+    },
+
+    {
+      path: '/dashboard/branchEdid/:id',
+      name: 'branchEdid',
+      component: BranchEditView,
+      props: true
     },
   ]
 })

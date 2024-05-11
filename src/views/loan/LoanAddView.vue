@@ -1,6 +1,6 @@
 <script>
 import NavbarViewVue from "../inc/NavbarView.vue";
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
     components: {
@@ -9,49 +9,86 @@ export default {
     data() {
         return {
             url: 'http://127.0.0.1:8000/api/loan',
-            name: '',
+            customer: [],
+            loanType: [],
+            loanProposalAmount: [],
+            loan: '',
+            selectCustomer: '',
             selectLoanType: '',
-            loanProposalAmount: '',
-            amount: '',
-            date: ''
+            selectLoanProposalAmount: '',
+            amount2: '',
+            date: '',
+            customerError: '',
+            loanTypeError: '',
+            loanProposalAmountError: '',
+            amount2Error: '',
+            dateError: ''
 
         }
     },
     mounted() {
+        this.getcustomer();
         this.getloanType();
+        this.getloanProposalAmount();
     },
     methods: {
+        getcustomer() {
+            axios.get('http://127.0.0.1:8000/api/customer')
+                .then(res => {
+                    this.customer = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching customer',error);
+                });
+
+        },
         getloanType() {
             axios.get('http://127.0.0.1:8000/api/loanType')
                 .then(res => {
                     this.loanType = (res.data.data)
                 })
+                .catch(error => {
+                    console.error('Error fetching Loan types',error);
+                });
 
         },
-        saveLoan(){
-            this.axios.post(`${this.url}`,{
-                customer_id: this.name,
+        getloanProposalAmount() {
+            axios.get('http://127.0.0.1:8000/api/loanProposal')
+                .then(res => {
+                    this.loanProposalAmount = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching Loan Proposal',error);
+                });
+
+        },
+
+        saveLoan() {
+            const data={
+                customer_id: this.selectCustomer,
                 loan_type_id: this.selectLoanType,
-                loan_proposal_id: this.loanProposalAmount,
-                amount: this.amount,
-                date: this.date
+                loan_proposal_id: this.selectLoanProposalAmount,
+                amount2: this.amount2,
+                date: this.date,
+            };
+            axios.post(this.url, data)
+            .then(res => {
+                this.$router.push('/dashboard/loan');
+            })
+            .catch(error => {
+                console.error('Error fetching Loan',error);
+            });
 
-            })
-            .then(res=> {
-                this.$router.push("/dashboard/loan")
-            })
+        },
+
+        clearErrors() {
+            this.customerError ,
+            this.loanTypeError ,
+            this.loanProposalAmountError ,
+            this.amount2Error,         
+            this.dateError 
         }
-
     },
-    watch: {
-        'loan': function () {
-            if (this.loan.length < 4) {
-                this.loanError = 'Loan Required'
-            } else {
-                this.loanError = ''
-            }
-        }
-    }
 }
 
 </script>
@@ -67,35 +104,39 @@ export default {
                             <h4 class=" table_heading">Add Loan</h4>
                         </div>
                         <div class="card-body">
-                            <form @submit.prevent="handleSubmit">
+                            
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Name</label>
-                                            <input type="text" v-model="name" class="form-control" placeholder="Enter Customer Name">
-                                            <p style="color: red" v-if="nameError">{{ nameError }}</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Loan Type</label>
-                                            <select class="form-select col-md-10" v-model="selectLoanType">
-                                                <option disabled value=""> Please Select the Loan Type </option>
-                                                <option v-for="(d,i) in loanType" :key="i" :value="d.id"></option>
-                                            </select>
-                                            <p style="color:red" v-if="loanTypeError">{{ loanTypeError }}</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Loan Proposal
-                                                Amount</label>
-                                            <input type="text" v-model="loanProposalAmount" class="form-control"
-                                                placeholder="Enter Loan Proposan Amount">
-                                                <p style="color: red;" v-if="loanProposalAmountError">{{ loanProposalAmountError }}</p>
-                                        </div>
+                                    <label for="exampleInputEmail1" class="form-label">Customer Name</label>
+                                    <select v-model="selectCustomer" class="form-select col-md-10" >
+                                        <option value="">Customer Name</option>
+                                        <option v-for="(d, i) in customer" :key="i" :value="d.id" >{{d.customer_name}}</option>
+                                        <p style="color:red" v-if="customerError">{{ customerError }}</p>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Loan Type</label>
+                                    <select v-model="selectLoanType" class="form-select col-md-10" >
+                                        <option value="">Loan Type </option>
+                                        <option v-for="(d, i) in loanType" :key="i" :value="d.id" >{{d.loan_type}}</option>
+                                        <p style="color:red" v-if="loanTypeError">{{ loanTypeError }}</p>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Loan Proposal Amount</label>
+                                    <select v-model="selectLoanProposalAmount" class="form-select col-md-10" >
+                                        <option value="">Loan Proposal Amount </option>
+                                        <option v-for="(d, i) in loanProposalAmount" :key="i" :value="d.id" >{{d.amount}}</option>
+                                        <p style="color:red" v-if="depositTypeError">{{ depositTypeError }}</p>
+                                    </select>
+                                </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label"> Amount</label>
-                                            <input type="text" v-model="amount" class="form-control" placeholder="Enter Amount">
-                                            <p style="color: red;" v-if="amountError">{{ amountError }}</p>
+                                            <input type="text" v-model="amount2" class="form-control" placeholder="Enter Amount">
+                                            <p style="color: red;" v-if="amount2Error">{{ amount2Error }}</p>
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Date</label>
@@ -104,8 +145,8 @@ export default {
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                                <button @click="saveLoan" type="submit" class="btn btn-primary">Submit</button>
+                            
                         </div>
                     </div>
                 </div>

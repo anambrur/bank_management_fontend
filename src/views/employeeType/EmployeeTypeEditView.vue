@@ -60,7 +60,8 @@
           this.employeeTypeError = 'Employee Type must be at least 4 characters long.';
           return; // Prevent submission if there's an error
         }
-        axios.put(`${this.url}/${this.id}`, { employee_type: this.employeeType }) // Corrected property name
+        axios.put(`${this.url}/${this.id}`,
+         { employee_type: this.employeeType }) // Corrected property name
           .then(res => {
             console.log('Employee Type updated:', res.data);
             this.$router.push("/dashboard/employeeType");
