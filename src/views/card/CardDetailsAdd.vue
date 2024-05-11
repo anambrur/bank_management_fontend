@@ -12,13 +12,33 @@
                         <div class="card-body">
                             <form @submit.prevent="handleSubmit">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                                    <input type="text" v-model="name" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter Name">
-                                    <p style="color:red" v-if="nameError">
-                                        {{ nameError }}
-                                    </p>
+                                    <label for="customer" class="form-label">Customer Name</label>
+                                    <select v-model="selectedCustomer" class="form-select col-md-10" >
+                                        <option value="">Customer Name</option>
+                                        <option v-for="(d, i) in customer" :key="i" :value="d.id" >{{d.customer_name}}</option>
+                                        <p style="color:red" v-if="customerError">{{ customerError }}</p>
+                                    </select>
+
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="cardType" class="form-label">Card Type</label>
+                                    <select v-model="selectedCardType" class="form-select col-md-10" >
+                                        <option value="">Card Type </option>
+                                        <option v-for="(d, i) in cardType" :key="i" :value="d.id" >{{d.card_type}}</option>
+                                        <p style="color:red" v-if="cardTypeError">{{ cardTypeError }}</p>
+                                    </select>
+
+                                </div>
+                                <div class="mb-3">
+                                    <label for="card_number" class="form-label">Card Number</label>
+                                    <input type="text" v-model="card_number" class="form-control" id="card_number"
+                                        placeholder="Enter Card number">
+                                    <p style="color:red" v-if="cardError">
+                                        {{ cardError }}</p>
+                                </div>
+
+
                                 <button type="submit" @click="saveCardDetails" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
@@ -40,46 +60,85 @@ export default {
     },
     data() {
         return {
-            name: '',
-            nameError: ''
+            url: 'http://127.0.0.1:8000/api/card',
+            customer: [],
+            cardType: [],
+            card_number: '',
+            selectedCustomer: '',
+            selectedCardType: '',
+            cardTypeError: '',
+            customerError: '',
+            cardError: '',
         }
     },
     mounted() {
-        // console.log('savaAccountType')
-        // this.savaAccountType();
+        this.getcardType();
+         this.getcustomer();
+
     },
     methods: {
-        saveCardDetails() {
-            // console.log(this.name)
-            const CardDetailsData = {
-                card: this.name
-            }
-            // console.log(AccountTypeData)
-            axios.post('http://127.0.0.1:8000/api/cardDetails', CardDetailsData)
+        getcustomer() {
+            axios.get('http://127.0.0.1:8000/api/customer')
                 .then(res => {
-                    // this.cardType = (res.data.data)
-                    console.log(res.data.data)
-                    // this.$router.push("/dashboard/cardType")
+                    this.customer = (res.data.data)
                 })
+                .catch(error => {
+                    console.error('Error fetching customer',error);
+                });
 
         },
-        handleSubmit() {
-            if (this.name.length < 1) {
-                this.nameError = 'Name is required';
-                return;
-            }
+        getcardType() {
+            axios.get('http://127.0.0.1:8000/api/cardType')
+                .then(res => {
+                    this.cardType = (res.data.data)
+                })
+                .catch(error => {
+                    console.error('Error fetching Card types',error);
+                });
+
+        },
+
+
+
+        // handleSubmit
+        saveCardDetails() {
+            // console.log(this.name)
+            const data = {
+                customer_id: this.selectedCustomer,
+                card_type_id: this.selectedCardType,
+                card_number: this.card_number,
+
+            };
+            console.log(data);
+            axios.post(this.url, data)
+                .then(res => {
+                    console.log(res)
+                     this.$router.push("/dashboard/cardDetails");
+                })
+                .catch(error => {
+                console.error('Error fetching Card',error);
+                
+                
+                });
+
+        },
+        clearErrors() {
+            this.customerError ,
+            this.depositTypeError ,
+            this.cardError        
         }
 
+
     },
-    watch: {
-        'name': function () {
-            if (this.name.length < 4) {
-                this.nameError = 'Card Details is Required'
-            } else {
-                this.nameError = ''
-            }
-        }
-    }
+    //     watch: {
+    //         'name': function () {
+    //             if (this.name.length < 4) {
+    //                 this.nameError = 'Card Details is Required'
+    //             } else {
+    //                 this.nameError = ''
+    //             }
+    //         }
+    //     }
 }
 
 </script>

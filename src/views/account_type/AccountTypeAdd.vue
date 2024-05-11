@@ -1,7 +1,6 @@
 <template>
     <main>
         <NavbarViewVue />
-
         <section class="main_content dashboard_part">
             <div class="container card mt-5 ms-2">
                 <div class="row justify-content-center">

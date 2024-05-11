@@ -8,22 +8,19 @@ export default {
     },
     data() {
         return {
-            url: 'http://127.0.0.1:8000/api/cardDetails',
-            cardDetails: []
+            url: 'http://127.0.0.1:8000/api/card',
+            cardDetails: [],
         }
-    },
-    mounted() {
-        this.getCardDetails();
     },
     methods: {
         getCardDetails() {
-            axios.get('http://127.0.0.1:8000/api/cardDetails')
+            axios.get(`${this.url}`)
                 .then(res => {
                     this.cardDetails = (res.data.data)
+                    console.log(res.data.data);
                 })
 
         },
-       
         cardDetailsDelete(id) {
             axios.delete(`${this.url}/${id}`)
                 .then(() => {
@@ -38,7 +35,10 @@ export default {
             this.$router.push({ name: 'editCardDetails', params: { id: id } });
         },
 
-    }
+    },
+    mounted() {
+        this.getCardDetails();
+    },
 }
 
 </script>
@@ -46,8 +46,10 @@ export default {
 <template>
     <main>
         <NavbarViewVue />
+
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="input-group rounded">
@@ -59,7 +61,6 @@ export default {
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <h4 class="m-3 table_heading">Card Details List</h4>
@@ -74,32 +75,24 @@ export default {
                 <table class="table table-striped ">
                     <thead class="table_color">
                         <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>Card Number</th>
-                            <th>Customer</th>
-                            <th>Card Type</th>
-                            <th>Action</th>
+                            <th scope="col">SL</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Card Type</th>
+                            <th scope="col">Card Number</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        <!-- <tr>
-                            <td>1</td>
-                            <td>Visa Card</td>
-                            <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm ">Delete</button>
-                            </td>
-                        </tr> -->
-                         <tr v-for="(d, i) in cardType" :key="i">
+                        <tr v-for="(d, i) in cardDetails" :key="i">
                             <th>{{ i + 1 }}</th>
-                            <td>{{ d.card_type }}</td>
+                            <th>{{ d.customer.customer_name }}</th>
+                            <th>{{ d.card_type.card_type }}</th>
+                            <th>{{ d.card_number }}</th>
                             <td>
                                 <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
                                 <button class="btn btn-danger btn-sm" @click="cardDetailsDelete(d.id)">Delete</button>
                             </td>
-                        </tr> 
+                        </tr>
                     </tbody>
                 </table>
             </div>
