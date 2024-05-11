@@ -28,9 +28,6 @@ import LoanAddView from '@/views/loan/LoanAddView.vue'
 import LoanProposalAddView from '@/views/loan_proposal/LoanProposalAddView.vue'
 import DepositTypeAdd from '@/views/deposit_type/DepositTypeAdd.vue'
 import DepositAdd from '@/views/deposit/DepositAdd.vue'
- HEAD
-import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
-import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
 
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
@@ -243,12 +240,12 @@ const router = createRouter({
       component: EmployeeAdd
     },
     {
-      path: '/dashboard/customerList/',
+      path: '/dashboard/customerList',
       name: 'customerList',
       component: CustomerView
     },
     {
-      path: '/dashboard/cardType/',
+      path: '/dashboard/cardType',
       name: 'cardType',
       component: CardTypeListView
     },
@@ -264,7 +261,7 @@ const router = createRouter({
       props: true // Pass route params as props to the component
     },
     {
-      path: '/dashboard/cardDetails/',
+      path: '/dashboard/cardDetails',
       name: 'cardDetails',
       component: CardDetailsListView
     },
