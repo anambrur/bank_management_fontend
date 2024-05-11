@@ -67,13 +67,14 @@ export default {
             const data={
                 customer_id: this.selectCustomer,
                 loan_type_id: this.selectLoanType,
-                loan_proposal_id: this.selectLoanProposalAmount,
-                amount2: this.amount2,
+                loan_proprosal_id: this.selectLoanProposalAmount,
+                amount: this.amount2,
                 date: this.date,
             };
             axios.post(this.url, data)
             .then(res => {
-                this.$router.push('/dashboard/loan');
+                console.log(res)
+                // this.$router.push('/dashboard/loan');
             })
             .catch(error => {
                 console.error('Error fetching Loan',error);
