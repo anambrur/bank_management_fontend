@@ -72,7 +72,7 @@ export default {
 
                 </div>
 
-                <table class="table table-striped ">
+                <table class="table table-striped table-responsive">
                     <thead class="table_color">
                         <tr>
                             <th>SL</th>

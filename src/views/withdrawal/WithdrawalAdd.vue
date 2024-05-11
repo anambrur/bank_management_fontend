@@ -1,3 +1,4 @@
+
 <script>
 import NavbarViewVue from '../inc/NavbarView.vue';
 import axios from 'axios';

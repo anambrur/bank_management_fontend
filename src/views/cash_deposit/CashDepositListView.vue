@@ -6,8 +6,9 @@ export default{
     components: {
         NavbarViewVue
     },
-    data(){
+    data() {
         return {
+
             url: 'http://127.0.0.1:8000/api/cashDeposit',
             deposit: []
         }
@@ -65,7 +66,11 @@ export default{
                         <h4 class="m-3 table_heading">Cash Deposit List</h4>
                     </div>
                     <div class="col-md-6 text-end mt-2">
+
+                        <button class="btn btn-warning">Add New</button>
+
                         <RouterLink to="/dashboard/cashDepositAdd" class="btn btn-warning">Add New</RouterLink>
+
 
                     </div>
 
