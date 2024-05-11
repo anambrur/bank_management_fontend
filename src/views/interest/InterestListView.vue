@@ -1,21 +1,50 @@
 <script>
-import NavbarView from '../inc/NavbarView.vue';
+import NavbarViewVue from '../inc/NavbarView.vue';
+import axios from 'axios';
 
 export default {
     components:{
-        NavbarView
+        NavbarViewVue
     },
     data() {
         return{
-
+            url: 'http://127.0.0.1:8000/api/interest',
+            interest: []
         }
+    },
+
+    mounted() {
+        this.getInterest();
+    },
+    methods:{
+        getInterest(){
+            axios.get(`${this.url}`)
+            .then(res=> {
+                this.interest = (res.data.data)
+            })
+            .catch(error => {
+            console.error('Error fetching interest', error);
+          });
+        },
+        interestDelete(id) {
+            axios.delete(`${this.url}/${id}`)
+            .then(() => {
+                this.getInterest();
+            })
+            .catch(error => {
+            console.error('Error deleting interest', error);
+          });
+        },
+        edit(id) {
+        this.$router.push({ name: 'interestEdit', params: { id: id } });
+      }
     }
 }
 </script>
 
 <template>
     <main>
-        <NavbarView/>
+        <NavbarViewVue/>
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
                 <div class="row">
@@ -43,17 +72,19 @@ export default {
                     <thead class="table_color">
                         <tr>
                             <th>SL</th>
-                            <th>Interest Rate</th>
+                            <th>Account Type</th>
+                            <th>Interest Rate (%)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>7.5%</td>
+                        <tr v-for="(d, i) in interest" :key="i">
+                            <th>{{ i + 1 }}</th>
+                            <th>{{ d.account_type.account_type }}</th>
+                            <th>{{ d.interest_rate }}</th>
                             <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
+                                <button class="btn btn-danger btn-sm" @click="interestDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>

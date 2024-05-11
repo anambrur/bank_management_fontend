@@ -1,13 +1,43 @@
 <script>
-import NavbarView from '../inc/NavbarView.vue';
+import NavbarViewVue from '../inc/NavbarView.vue';
+import axios from 'axios';
+
 export default{
     components: {
-        NavbarView
+        NavbarViewVue
     },
     data(){
         return {
-            
+            url: 'http://127.0.0.1:8000/api/cashDeposit',
+            deposit: []
         }
+    },
+    mounted() {
+        this.getDeposit();
+    },
+    methods: {
+        getDeposit() {
+        axios.get(`${this.url}`)
+          .then(response => {
+            this.deposit = (response.data.data);
+          })
+          .catch(error => {
+            console.error('Error fetching payment', error);
+          });
+      },
+      depositDelete(id){
+        axios.delete(`${this.url}/${id}`)
+        .then(() => {
+            this.getDeposit();
+            this.$router.push('/dashboard/cashDeposit');
+        })
+        .catch(error => {
+            console.error('Error deleting cashDeposit', error);
+        });
+      },
+      edit(id) {
+        this.$router.push({ name: 'paymentedit', params: { id: id } });
+      }
     }
 
 }
@@ -15,7 +45,7 @@ export default{
 
 <template>
     <main>
-       <NavbarView/>
+       <NavbarViewVue/>
         <section class="main_content dashboard_part">
             <div class="container card card-body mt-5 ms-2">
                 <div class="row">
@@ -45,19 +75,21 @@ export default{
                     <thead class="table_color">
                         <tr>
                             <th>SL</th>
-                            <th>Date</th>
+                            <th>Customer Name</th>
                             <th>Deposit Amount</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>19-04-2024</td>
-                            <td>18000</td>
+                        <tr v-for="(d, i) in deposit" :key="d.id">
+                            <th>{{ i + 1 }}</th>
+                            <td>{{ d.customer.customer_name }}</td>
+                            <td>{{ d.amount }}</td>
+                            <td>{{ d.date }}</td>
                             <td>
-                                <button class="btn btn-success btn-sm me-2">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
+                                <button class="btn btn-danger btn-sm" @click="depositDelete(d.id)">Delete</button>
                             </td>
                         </tr>
                     </tbody>
