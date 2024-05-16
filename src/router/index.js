@@ -3,6 +3,7 @@ import DashboardView from '@/views/DashboardView.vue'
 import AccountTypeListView from '@/views/account_type/AccountTypeListView.vue'
 import WithdrawalListView from '@/views/withdrawal/WithdrawalListView.vue'
 import CashDepositListView from '@/views/cash_deposit/CashDepositListView.vue'
+
 import AccountTypeAdd from '@/views/account_type/AccountTypeAdd.vue'
 import AccountTypeEdit from '@/views/account_type/AccountTypeEdit.vue'
 import ExpenseCategoryAddView from '@/views/expensecategory/ExpenseCategoryAddView.vue'
@@ -32,9 +33,12 @@ import DepositAdd from '@/views/deposit/DepositAdd.vue'
 import PaymentListView from '@/views/payment/PaymentListView.vue'
 import InterestListView from '@/views/interest/InterestListView.vue'
 import WithdrawalAdd from '@/views/withdrawal/WithdrawalAdd.vue'
-import InterestAdd from '@/views/interest/InterestAdd.vue'
+
 import CashDepositAdd from '@/views/cash_deposit/CashDepositAdd.vue'
+import InterestAdd from '@/views/interest/InterestAdd.vue'
 import PaymentAdd from '@/views/payment/PaymentAdd.vue'
+import PaymentEdit from '@/views/payment/PaymentEdit.vue'
+
 
 import LogInView from '@/views/LogInView.vue'
 import SignUpView from '@/views/SignUpView.vue'
@@ -185,6 +189,11 @@ const router = createRouter({
       component: PaymentAdd
     },
     {
+      path: '/dashboard/paymentEdit/:id',
+      name: 'paymentEdit',
+      component: PaymentEdit
+    },
+    {
       path: '/dashboard/interest',
       name: 'interest',
       component: InterestListView
@@ -256,7 +265,6 @@ const router = createRouter({
       name: 'employeeTypeEdit',
       component: EmployeeTypeEditView
     },
-
     {
       path: '/dashboard/employee',
       name: 'employee',
@@ -274,14 +282,12 @@ const router = createRouter({
       name: 'employeeEdit',
       component: EmployeeEditView,
       props: true
-      
     },
-
     {
       path: '/dashboard/customerList/',
 
       name: 'customerList',
-      component: CustomerView
+      component: CustomerView,
     },
     {
       path: '/dashboard/cardType',
@@ -332,6 +338,12 @@ const router = createRouter({
       component: BranchEditView,
       props: true
     },
+    {
+      path: '/dashboard/interestAdd',
+      name: 'interestAdd',
+      component: InterestAdd
+    }
+
   ]
 })
 

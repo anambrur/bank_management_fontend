@@ -57,6 +57,11 @@ export default {
             // console.log(AccountTypeData)
             axios.post('http://127.0.0.1:8000/api/cardType', CardTypeData)
                 .then(res => {
+
+                    // this.cardType = (res.data.data)
+                    //console.log(res.data.data)
+                    this.$router.push("/dashboard/cardType")
+
                      this.cardType = (res.data.data)
                     console.log(res.data.data)
                      this.$router.push("/dashboard/cardType")
