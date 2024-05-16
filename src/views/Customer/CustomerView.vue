@@ -63,12 +63,12 @@ export default {
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h4 class="m-3 table_heading">Account Type List</h4>
+                        <h4 class="m-3 table_heading">Customer List</h4>
                     </div>
-                    <div class="col-md-6 text-end mt-2">
+                    <!-- <div class="col-md-6 text-end mt-2">
                         <RouterLink to="/dashboard/accountTypeAdd" class="btn btn-warning">Add New</RouterLink>
 
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -98,7 +98,6 @@ export default {
                             <td>{{ d.email }}</td>
                             <td>{{ d.mobile }}</td>
                             <td>{{ d.address }}</td>
-                            <td>{{ d.photo }}</td>
                             <td>{{ d.nid_number }}</td>
                             <td>{{ d.date_of_birth }}</td>
                             <td>{{ d.nominee_name }}</td>
@@ -106,6 +105,7 @@ export default {
                             <td>{{ d.nominee_nid_number }}</td>
                             <td>{{ d.document }}</td>
                             <td>{{ d.account_type_id }}</td>
+                            <td>{{ d.photo }}</td>
                             <td>
                                 <button class="btn btn-success btn-sm me-2" @click="edit(d.id)">Edit</button>
                                 <button class="btn btn-danger btn-sm" @click="accountTypeDelete(d.id)">Delete</button>
